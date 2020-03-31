@@ -1,4 +1,4 @@
-package com.bank.framework.converter;
+package com.quiz.framework.converter;
 
 public interface Converter<T, K> {
 

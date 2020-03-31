@@ -1,4 +1,4 @@
-package com.bank.framework.domain.test.utils;
+package com.quiz.framework.domain.test.utils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.bank.framework.domain.AbstractModelBean;
+import com.quiz.framework.domain.AbstractModelBean;
 
 public abstract class AbstractModelBeanTest<T extends AbstractModelBean> {
 

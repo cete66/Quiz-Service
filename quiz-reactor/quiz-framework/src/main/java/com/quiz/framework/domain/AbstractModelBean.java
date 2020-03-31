@@ -1,4 +1,4 @@
-package com.bank.framework.domain;
+package com.quiz.framework.domain;
 
 import java.io.Serializable;
 

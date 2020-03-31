@@ -3,7 +3,8 @@ package com.quiz.coreservice.repository.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.bank.framework.domain.AbstractModelBean;
+import com.quiz.framework.domain.AbstractModelBean;
+
 import javax.annotation.Generated;
 
 @Document

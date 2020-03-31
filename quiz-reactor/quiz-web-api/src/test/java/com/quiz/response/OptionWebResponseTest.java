@@ -1,13 +1,14 @@
-package com.quiz.coreservice.domain;
+package com.quiz.response;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import com.quiz.coreservice.domain.OptionRequest.OptionRequestBuilder;
 import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
+import com.quiz.response.OptionWebResponse;
+import com.quiz.response.OptionWebResponse.OptionWebResponseBuilder;
 
-public class OptionRequestTest extends AbstractModelBeanTest<OptionRequest>{
+public class OptionWebResponseTest extends AbstractModelBeanTest<OptionWebResponse> {
 
-	private final OptionRequestBuilder optBuilder = OptionRequest.builder()
+	private final OptionWebResponseBuilder optBuilder = OptionWebResponse.builder()
 			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
@@ -19,5 +20,4 @@ public class OptionRequestTest extends AbstractModelBeanTest<OptionRequest>{
 		entityA2 = entityA1.cloneBuilder().build();
 		entityB = entityA1.cloneBuilder().withId("2").build();
 	}
-
 }

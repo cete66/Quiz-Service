@@ -3,7 +3,7 @@ package com.quiz.coreservice.domain;
 import java.util.Collections;
 import java.util.List;
 
-import com.bank.framework.domain.AbstractModelBean;
+import com.quiz.framework.domain.AbstractModelBean;
 
 public class QuizRequest extends AbstractModelBean {
 

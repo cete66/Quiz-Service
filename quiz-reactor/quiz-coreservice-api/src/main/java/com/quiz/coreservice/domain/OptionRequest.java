@@ -1,6 +1,6 @@
 package com.quiz.coreservice.domain;
 
-import com.bank.framework.domain.AbstractModelBean;
+import com.quiz.framework.domain.AbstractModelBean;
 
 public class OptionRequest extends AbstractModelBean {
 

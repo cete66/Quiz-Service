@@ -2,17 +2,19 @@ package com.quiz.response;
 
 import java.util.Map;
 
-import com.bank.framework.domain.AbstractModelBean;
 import javax.annotation.Generated;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.quiz.framework.domain.AbstractModelBean;
+
 import java.util.Collections;
 
+@JsonDeserialize(builder = AllQuizWebResponse.AllQuizWebResponseBuilder.class)
 public class AllQuizWebResponse extends AbstractModelBean{
 
 	private final Map<String, Map<String, QuestionWebResponse>> quiz;
 
 
-
-	@Generated("SparkTools")
 	private AllQuizWebResponse(AllQuizWebResponseBuilder builder) {
 		this.quiz = builder.quiz;
 	}
@@ -47,6 +49,10 @@ public class AllQuizWebResponse extends AbstractModelBean{
 			return false;
 		return true;
 	}
+	
+	public AllQuizWebResponseBuilder cloneBuilder() {
+		return new AllQuizWebResponseBuilder(this);
+	}
 
 	public static AllQuizWebResponseBuilder builder() {
 		return new AllQuizWebResponseBuilder();
@@ -56,6 +62,11 @@ public class AllQuizWebResponse extends AbstractModelBean{
 		private Map<String, Map<String, QuestionWebResponse>> quiz = Collections.emptyMap();
 
 		private AllQuizWebResponseBuilder() {
+		}
+		
+		public AllQuizWebResponseBuilder(AllQuizWebResponse allQuiz) {
+			super();
+			this.quiz = allQuiz.quiz;
 		}
 
 		public AllQuizWebResponseBuilder withQuiz(Map<String, Map<String, QuestionWebResponse>> quiz) {

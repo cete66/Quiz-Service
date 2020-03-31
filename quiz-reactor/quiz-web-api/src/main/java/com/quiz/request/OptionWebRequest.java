@@ -1,7 +1,7 @@
 package com.quiz.request;
 
-import com.bank.framework.domain.AbstractModelBean;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.quiz.framework.domain.AbstractModelBean;
 
 @JsonDeserialize(builder = OptionWebRequest.OptionWebRequestBuilder.class)
 public class OptionWebRequest extends AbstractModelBean {

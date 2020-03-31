@@ -3,10 +3,10 @@ package com.quiz.response;
 import java.util.Collections;
 import java.util.List;
 
-import com.bank.framework.domain.AbstractModelBean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.quiz.framework.domain.AbstractModelBean;
 
 @JsonDeserialize(builder = QuestionWebResponse.QuestionWebResponseBuilder.class)
 @JsonInclude(value = Include.NON_NULL)

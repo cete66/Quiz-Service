@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
-import com.bank.framework.domain.test.utils.AbstractModelBeanTest;
 import com.quiz.coreservice.domain.QuestionRequest.QuestionRequestBuilder;
+import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 
 public class QuestionRequestTest extends AbstractModelBeanTest<QuestionRequest>{
 

@@ -2,9 +2,9 @@ package com.quiz.coreservice.repository.entities;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import com.bank.framework.domain.test.utils.AbstractModelBeanTest;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.coreservice.repository.entities.Option.OptionBuilder;
+import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 
 public class OptionTest extends AbstractModelBeanTest<Option>{
 

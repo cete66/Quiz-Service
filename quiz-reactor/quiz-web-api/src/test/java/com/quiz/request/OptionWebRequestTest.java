@@ -2,7 +2,7 @@ package com.quiz.request;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import com.bank.framework.domain.test.utils.AbstractModelBeanTest;
+import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 import com.quiz.request.OptionWebRequest.OptionWebRequestBuilder;
 
 public class OptionWebRequestTest extends AbstractModelBeanTest<OptionWebRequest> {

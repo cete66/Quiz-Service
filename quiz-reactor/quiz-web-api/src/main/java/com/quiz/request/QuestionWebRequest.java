@@ -3,8 +3,8 @@ package com.quiz.request;
 import java.util.Collections;
 import java.util.List;
 
-import com.bank.framework.domain.AbstractModelBean;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.quiz.framework.domain.AbstractModelBean;
 
 @JsonDeserialize(builder = QuestionWebRequest.QuestionWebRequestBuilder.class)
 public class QuestionWebRequest extends AbstractModelBean {

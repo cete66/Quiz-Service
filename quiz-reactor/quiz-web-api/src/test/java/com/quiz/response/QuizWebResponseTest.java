@@ -1,26 +1,26 @@
-package com.quiz.request;
+package com.quiz.response;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 
 import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
-import com.quiz.request.OptionWebRequest.OptionWebRequestBuilder;
-import com.quiz.request.QuestionWebRequest.QuestionWebRequestBuilder;
-import com.quiz.request.QuizWebRequest.QuizWebRequestBuilder;
+import com.quiz.response.OptionWebResponse.OptionWebResponseBuilder;
+import com.quiz.response.QuestionWebResponse.QuestionWebResponseBuilder;
+import com.quiz.response.QuizWebResponse.QuizWebResponseBuilder;
 
-public class QuizWebRequestTest extends AbstractModelBeanTest<QuizWebRequest>{
+public class QuizWebResponseTest extends AbstractModelBeanTest<QuizWebResponse>{
 
-	private final OptionWebRequestBuilder builder = OptionWebRequest.builder()
+	private final OptionWebResponseBuilder builder = OptionWebResponse.builder()
 			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
-	private final QuestionWebRequestBuilder qBuilder = QuestionWebRequest.builder()
+	private final QuestionWebResponseBuilder qBuilder = QuestionWebResponse.builder()
 			.withAnswer(builder.build())
 			.withId("1")
 			.withOptions(Arrays.asList(builder.build(), builder.withCorrect(false).build()))
 			.withQuestion("a");
-	private final QuizWebRequestBuilder quizBuilder = QuizWebRequest.builder()
+	private final QuizWebResponseBuilder quizBuilder = QuizWebResponse.builder()
 			.withId("1")
 			.withName("quiz1")
 			.withQuestions(Arrays.asList(qBuilder.build(), qBuilder.withQuestion("b").build()));

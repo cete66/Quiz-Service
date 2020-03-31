@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import com.bank.framework.domain.test.utils.AbstractModelBeanTest;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.coreservice.repository.entities.Option.OptionBuilder;
 import com.quiz.coreservice.repository.entities.Question;
 import com.quiz.coreservice.repository.entities.Question.QuestionBuilder;
+import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 
 public class QuestionTest extends AbstractModelBeanTest<Question>{
 
