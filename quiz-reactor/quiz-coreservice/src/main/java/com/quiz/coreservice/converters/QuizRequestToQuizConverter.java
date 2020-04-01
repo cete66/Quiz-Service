@@ -8,35 +8,35 @@ import org.springframework.stereotype.Component;
 
 import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.domain.QuizRequest;
+import com.quiz.coreservice.repository.entities.Question;
+import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.framework.converter.Converter;
-import com.quiz.request.QuestionWebRequest;
-import com.quiz.request.QuizWebRequest;
 
 @Component
-public class QuizWebRequestToQuizRequestConverter implements Converter<QuizWebRequest, QuizRequest> {
+public class QuizRequestToQuizConverter implements Converter<QuizRequest, Quiz> {
 
-	private final Converter<QuestionWebRequest, QuestionRequest> qstConv;
+	private final Converter<QuestionRequest, Question> qstConv;
 	
 	@Autowired
-	public QuizWebRequestToQuizRequestConverter(
-			final Converter<QuestionWebRequest, QuestionRequest> qstConv) {
+	public QuizRequestToQuizConverter(
+			final Converter<QuestionRequest, Question> qstConv) {
 		this.qstConv = qstConv;
 	}
 	
 	@Override
-	public QuizRequest convert(QuizWebRequest from) {
+	public Quiz convert(QuizRequest from) {
 		if (from == null) {
 			return null;
 		}
 		
-		return QuizRequest.builder()
+		return Quiz.builder()
 				.withId(from.getId())
 				.withName(from.getName())
 				.withQuestions(qstListConvert(from.getQuestions()))
 				.build();
 	}
 
-	protected List<QuestionRequest> qstListConvert(List<QuestionWebRequest> questions) {
+	protected List<Question> qstListConvert(List<QuestionRequest> questions) {
 		if (questions == null) {
 			return null;
 		}

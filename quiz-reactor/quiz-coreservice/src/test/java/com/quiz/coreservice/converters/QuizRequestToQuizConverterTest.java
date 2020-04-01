@@ -12,11 +12,11 @@ import org.junit.jupiter.api.Test;
 import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.domain.QuizRequest;
-import com.quiz.request.OptionWebRequest;
-import com.quiz.request.QuestionWebRequest;
-import com.quiz.request.QuizWebRequest;
+import com.quiz.coreservice.repository.entities.Option;
+import com.quiz.coreservice.repository.entities.Question;
+import com.quiz.coreservice.repository.entities.Quiz;
 
-public class QuizWebRequestToQuizRequestConverterTest {
+public class QuizRequestToQuizConverterTest {
 
 	private static final String ID = "1";
 	private static final Boolean CORRECT = true;
@@ -25,13 +25,13 @@ public class QuizWebRequestToQuizRequestConverterTest {
 	private static final String Q1 = "q1";
 	private static final String QZ_ID1 = "qz_id1";
 	private static final String QZ_NAME1 = "qz_name1";
-	private final QuizWebRequest toConvert = initToConvertQuiz();
-	private final OptionWebRequestToOptionRequestConverter optConv = 
-			new OptionWebRequestToOptionRequestConverter();
-	private final QuestionWebRequestToQuestionRequestConverter converter = 
-			new QuestionWebRequestToQuestionRequestConverter(optConv);
-	private final QuizWebRequestToQuizRequestConverter quizConv =
-			new QuizWebRequestToQuizRequestConverter(converter);
+	private final QuizRequest toConvert = initToConvertQuiz();
+	private final OptionRequestToOptionConverter optConv = 
+			new OptionRequestToOptionConverter();
+	private final QuestionRequestToQuestionConverter converter = 
+			new QuestionRequestToQuestionConverter(optConv);
+	private final QuizRequestToQuizConverter quizConv =
+			new QuizRequestToQuizConverter(converter);
 
 	@Test
 	public void givenNullParameterShouldReturnNull() {
@@ -42,20 +42,11 @@ public class QuizWebRequestToQuizRequestConverterTest {
 
 	@Test
 	public void givenValidParameterShouldConvertProperly() {
-		QuizRequest expected = initExpectedQuiz();
+		Quiz expected = initExpectedQuiz();
 		MatcherAssert.assertThat(this.quizConv.convert(toConvert), Matchers.is(expected));
 	}
 
-	private List<OptionWebRequest> initToConvertOptsList() {
-
-		List<OptionWebRequest> result = new ArrayList<OptionWebRequest>();
-
-		result.add(OptionWebRequest.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
-
-		return result;
-	}
-
-	private List<OptionRequest> initExpectedOptsList() {
+	private List<OptionRequest> initToConvertOptsList() {
 
 		List<OptionRequest> result = new ArrayList<OptionRequest>();
 
@@ -64,8 +55,17 @@ public class QuizWebRequestToQuizRequestConverterTest {
 		return result;
 	}
 
-	private QuestionRequest initExpected() {
-		return QuestionRequest.builder()
+	private List<Option> initExpectedOptsList() {
+
+		List<Option> result = new ArrayList<Option>();
+
+		result.add(Option.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+
+		return result;
+	}
+
+	private Question initExpected() {
+		return Question.builder()
 				.withAnswer(initExpectedOptsList().get(0))
 				.withId(QT1_ID)
 				.withOptions(initExpectedOptsList())
@@ -73,8 +73,8 @@ public class QuizWebRequestToQuizRequestConverterTest {
 				.build();
 	}
 
-	private QuestionWebRequest initToConvert() {
-		return QuestionWebRequest.builder()
+	private QuestionRequest initToConvert() {
+		return QuestionRequest.builder()
 				.withAnswer(initToConvertOptsList().get(0))
 				.withId(QT1_ID)
 				.withOptions(initToConvertOptsList())
@@ -82,16 +82,16 @@ public class QuizWebRequestToQuizRequestConverterTest {
 				.build();
 	}
 	
-	private QuizWebRequest initToConvertQuiz() {
-		return QuizWebRequest.builder()
+	private QuizRequest initToConvertQuiz() {
+		return QuizRequest.builder()
 				.withId(QZ_ID1)
 				.withName(QZ_NAME1)
 				.withQuestions(Arrays.asList(initToConvert()))
 				.build();
 	}
 	
-	private QuizRequest initExpectedQuiz() {
-		return QuizRequest.builder()
+	private Quiz initExpectedQuiz() {
+		return Quiz.builder()
 				.withId(QZ_ID1)
 				.withName(QZ_NAME1)
 				.withQuestions(Arrays.asList(initExpected()))

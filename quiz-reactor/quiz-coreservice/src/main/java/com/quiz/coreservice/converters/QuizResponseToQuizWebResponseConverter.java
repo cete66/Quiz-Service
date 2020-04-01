@@ -7,36 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.quiz.coreservice.domain.QuestionRequest;
+import com.quiz.coreservice.domain.QuestionResponse;
 import com.quiz.coreservice.domain.QuizRequest;
+import com.quiz.coreservice.domain.QuizResponse;
+import com.quiz.coreservice.repository.entities.Question;
+import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.framework.converter.Converter;
-import com.quiz.request.QuestionWebRequest;
-import com.quiz.request.QuizWebRequest;
+import com.quiz.response.QuestionWebResponse;
+import com.quiz.response.QuizWebResponse;
 
 @Component
-public class QuizWebRequestToQuizRequestConverter implements Converter<QuizWebRequest, QuizRequest> {
+public class QuizResponseToQuizWebResponseConverter 
+implements Converter<QuizResponse, QuizWebResponse> {
 
-	private final Converter<QuestionWebRequest, QuestionRequest> qstConv;
+	private final Converter<QuestionResponse, QuestionWebResponse> qstConv;
 	
 	@Autowired
-	public QuizWebRequestToQuizRequestConverter(
-			final Converter<QuestionWebRequest, QuestionRequest> qstConv) {
+	public QuizResponseToQuizWebResponseConverter(
+			final Converter<QuestionResponse, QuestionWebResponse> qstConv) {
 		this.qstConv = qstConv;
 	}
 	
 	@Override
-	public QuizRequest convert(QuizWebRequest from) {
+	public QuizWebResponse convert(QuizResponse from) {
 		if (from == null) {
 			return null;
 		}
 		
-		return QuizRequest.builder()
+		return QuizWebResponse.builder()
 				.withId(from.getId())
 				.withName(from.getName())
 				.withQuestions(qstListConvert(from.getQuestions()))
 				.build();
 	}
 
-	protected List<QuestionRequest> qstListConvert(List<QuestionWebRequest> questions) {
+	protected List<QuestionWebResponse> qstListConvert(List<QuestionResponse> questions) {
 		if (questions == null) {
 			return null;
 		}
