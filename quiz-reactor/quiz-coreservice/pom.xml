@@ -87,7 +87,6 @@
 				<filtering>true</filtering>
 				<includes>
 					<include>**/*.properties</include>
-					<include>**/*.sql</include>
 				</includes>
 			</resource>
 		</resources>

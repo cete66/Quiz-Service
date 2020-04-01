@@ -1,5 +1,12 @@
 package com.quiz.coreservice.repository;
 
-public interface QuestionRepository {
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.quiz.coreservice.repository.entities.Question;
+
+@Repository
+@Transactional
+public interface QuestionRepository extends GameCRUDRepository<Question>{
 
 }

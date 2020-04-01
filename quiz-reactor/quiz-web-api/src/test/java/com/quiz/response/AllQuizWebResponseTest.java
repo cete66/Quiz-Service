@@ -40,23 +40,27 @@ public class AllQuizWebResponseTest extends AbstractModelBeanTest<AllQuizWebResp
 										.withName("quiz2").build()))).build();
 	}
 	
-	//TODO REEMPLEZAR ESTO POR UN FORMATTER O CONVERTER - Robin
+	/**
+	 * To avoid coreservice dependency, we need to duplicate 
+	 * <code>ListQuizWebResponseToAllQuizWebResponseConverter</code>'s code here
+	 * @param quizList
+	 * @return
+	 */
 	private Map<String, Map<String, QuestionWebResponse>> 
 	generateFinalMap(final List<QuizWebResponse> quizList) {
 
-		Map<String, Map<String, QuestionWebResponse>> quiz = 
+		Map<String, Map<String, QuestionWebResponse>> quizMap = 
 				new HashMap<String, Map<String,QuestionWebResponse>>();
 
-		quizList.stream().forEach(q -> {
+		quizList.stream().forEach(quiz -> {
 			Map<String,QuestionWebResponse> qst = new HashMap<String, QuestionWebResponse>();
-			IntStream.range(0, q.getQuestions().size()).forEach(index -> {
-				//TODO REEMPLAZAR LA 'Q' POR UNA PROPERTY - Robin
-				qst.put("q"+(index+1), q.getQuestions().get(index));
+			IntStream.range(0, quiz.getQuestions().size()).forEach(index -> {
+				qst.put("q"+(index+1), quiz.getQuestions().get(index));
 			});
-			quiz.put(q.getName(), qst);
+			quizMap.put(quiz.getName(), qst);
 		});		
 		
-		return quiz;
+		return quizMap;
 	}
 
 }
