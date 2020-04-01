@@ -18,14 +18,13 @@ public class QuizServiceImpl extends
 			GameCRUDAbstractService<Quiz, QuizRequest, QuizResponse>{
 
 	@Autowired
-	public QuizServiceImpl(QuizRepository repository, 
-			Converter<Quiz, QuizResponse> fromCoreConverter,
-			ListConverter<Quiz, QuizResponse> listConverter, 
-			Converter<QuizRequest, Quiz> toCoreConverter,
+	public QuizServiceImpl(final QuizRepository repository, 
+			final Converter<Quiz, QuizResponse> fromCoreConverter,
+			final ListConverter<Quiz, QuizResponse> listConverter, 
+			final Converter<QuizRequest, Quiz> toCoreConverter,
 			@Value("${com.quiz.coreservice.repository.error.update.message}")
-			String errorUpdatingEntity) {
+			final String errorUpdatingEntity) {
 		super(repository, fromCoreConverter, listConverter, 
 				toCoreConverter, errorUpdatingEntity);
 	}
-
 }
