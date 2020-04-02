@@ -17,6 +17,10 @@ public class Question extends AbstractModelBean {
 	private List<Option> options;
 	private Option answer;
 
+	public Question() {
+		
+	}
+	
 	private Question(QuestionBuilder builder) {
 		this.id = builder.id;
 		this.question = builder.question;

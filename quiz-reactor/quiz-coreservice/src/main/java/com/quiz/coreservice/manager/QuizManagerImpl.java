@@ -1,4 +1,4 @@
-package com.quiz.coreservice;
+package com.quiz.coreservice.manager;
 
 import java.util.List;
 
@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.quiz.coreservice.GameCRUDAbstractManager;
+import com.quiz.coreservice.GameCRUDManager;
+import com.quiz.coreservice.GameCRUDService;
+import com.quiz.coreservice.QuizManager;
 import com.quiz.coreservice.domain.QuizRequest;
 import com.quiz.coreservice.domain.QuizResponse;
 import com.quiz.framework.converter.Converter;

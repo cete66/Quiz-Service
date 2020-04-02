@@ -1,9 +1,12 @@
-package com.quiz.coreservice;
+package com.quiz.coreservice.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.quiz.coreservice.GameCRUDAbstractManager;
+import com.quiz.coreservice.GameCRUDManager;
+import com.quiz.coreservice.GameCRUDService;
 import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.domain.QuestionResponse;
 import com.quiz.framework.converter.Converter;
@@ -24,4 +27,15 @@ public class QuestionManagerImpl extends GameCRUDAbstractManager<QuestionWebRequ
 		super(service, fromCoreConverter, toCoreConverter);
 	}
 
+	@Override
+	public QuestionWebResponse create(QuestionWebRequest entity) {
+		//TODO ROBIN CONTROLAR QUE SOLO PUEDA HABER UNA RESPUESTA CORRECTA
+		return super.create(entity);
+	}
+	
+	@Override
+	public QuestionWebResponse update(QuestionWebRequest entity) {
+		//TODO ROBIN CONTROLAR QUE SOLO PUEDA HABER UNA RESPUESTA CORRECTA
+		return super.update(entity);
+	}
 }

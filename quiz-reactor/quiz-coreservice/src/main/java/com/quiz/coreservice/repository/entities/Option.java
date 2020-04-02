@@ -13,6 +13,10 @@ public class Option extends AbstractModelBean {
 	private String value;
 	private Boolean correct;
 
+	public Option() {
+		
+	}
+	
 	private Option(OptionBuilder builder) {
 		this.id = builder.id;
 		this.value = builder.value;

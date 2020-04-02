@@ -16,6 +16,10 @@ public class Quiz extends AbstractModelBean {
 	private String name;
 	private List<Question> questions;
 
+	public Quiz() {
+		
+	}
+	
 	private Quiz(QuizBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;

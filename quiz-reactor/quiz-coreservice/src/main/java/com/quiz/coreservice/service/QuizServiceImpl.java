@@ -1,4 +1,4 @@
-package com.quiz.coreservice;
+package com.quiz.coreservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.quiz.coreservice.GameCRUDAbstractService;
+import com.quiz.coreservice.GameCRUDService;
 import com.quiz.coreservice.domain.QuizRequest;
 import com.quiz.coreservice.domain.QuizResponse;
 import com.quiz.coreservice.repository.GameCRUDRepository;
