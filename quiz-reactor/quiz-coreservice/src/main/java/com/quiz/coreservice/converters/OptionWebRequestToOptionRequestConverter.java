@@ -6,7 +6,7 @@ import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.framework.converter.Converter;
 import com.quiz.request.OptionWebRequest;
 
-@Component
+@Component("optionWebRequestToOptionRequestConverter")
 public class OptionWebRequestToOptionRequestConverter implements Converter<OptionWebRequest, OptionRequest>{
 
 	@Override

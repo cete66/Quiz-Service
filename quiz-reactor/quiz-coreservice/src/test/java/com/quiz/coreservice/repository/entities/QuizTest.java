@@ -21,12 +21,12 @@ public class QuizTest extends AbstractModelBeanTest<Quiz>{
 	private final QuestionBuilder qBuilder = Question.builder()
 			.withAnswer(builder.build())
 			.withId("1")
-			.withOptions(Arrays.asList(builder.build(), builder.withCorrect(false).build()))
+			.withOptions(Arrays.asList(builder.build(), builder.build().cloneBuilder().withCorrect(false).build()))
 			.withQuestion("a");
 	private final QuizBuilder quizBuilder = Quiz.builder()
 			.withId("1")
 			.withName("quiz1")
-			.withQuestions(Arrays.asList(qBuilder.build(), qBuilder.withQuestion("b").build()));
+			.withQuestions(Arrays.asList(qBuilder.build(), qBuilder.build().cloneBuilder().withQuestion("b").build()));
 	
 	@Override
 	@BeforeEach

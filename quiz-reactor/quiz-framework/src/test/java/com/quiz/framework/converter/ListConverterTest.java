@@ -22,7 +22,7 @@ public class ListConverterTest {
 	@Test
 	public void givenValidParameterShouldConvertproperly() {
 		List<Integer> expected = Arrays.asList(v1);
-		MatcherAssert.assertThat(listconv.convert(Arrays.asList(v1.toString())), Matchers.contains(expected));
+		MatcherAssert.assertThat(listconv.convert(Arrays.asList(v1.toString())), Matchers.contains(expected.get(0)));
 	}
 
 	

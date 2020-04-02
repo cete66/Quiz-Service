@@ -6,7 +6,7 @@ import com.quiz.coreservice.domain.OptionResponse;
 import com.quiz.framework.converter.Converter;
 import com.quiz.response.OptionWebResponse;
 
-@Component
+@Component("optionResponseToOptionWebResponseConverter")
 public class OptionResponseToOptionWebResponseConverter 
 implements Converter<OptionResponse, OptionWebResponse> {
 

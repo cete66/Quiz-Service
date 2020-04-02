@@ -12,7 +12,7 @@ import com.quiz.framework.converter.Converter;
 import com.quiz.request.OptionWebRequest;
 import com.quiz.request.QuestionWebRequest;
 
-@Component
+@Component("questionWebRequestToQuestionRequestConverter")
 public class QuestionWebRequestToQuestionRequestConverter 
 			implements Converter<QuestionWebRequest, QuestionRequest> {
 

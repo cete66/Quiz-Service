@@ -2,7 +2,6 @@ package com.quiz.coreservice;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Example;
 
@@ -20,13 +19,11 @@ public abstract class GameCRUDAbstractService<T, E, R> implements GameCRUDServic
 	
 	public GameCRUDAbstractService(final GameCRUDRepository<T> repository, 
 			final Converter<T, R> fromCoreConverter,
-			final ListConverter<T, R> listConverter,
 			final Converter<E, T> toCoreConverter,
-			@Value("${com.quiz.coreservice.repository.error.update.message}")
 			final String errorUpdatingEntity){
 		this.repository = repository;
 		this.fromCoreConverter = fromCoreConverter;
-		this.listConverter = listConverter;
+		this.listConverter = new ListConverter<T, R>(fromCoreConverter);
 		this.toCoreConverter = toCoreConverter;
 		this.errorUpdatingEntity = errorUpdatingEntity;
 	}

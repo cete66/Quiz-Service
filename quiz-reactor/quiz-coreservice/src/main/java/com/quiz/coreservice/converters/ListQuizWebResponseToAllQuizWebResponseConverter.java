@@ -14,7 +14,7 @@ import com.quiz.response.AllQuizWebResponse;
 import com.quiz.response.QuestionWebResponse;
 import com.quiz.response.QuizWebResponse;
 
-@Component
+@Component("listQuizWebResponseToAllQuizWebResponseConverter")
 public class ListQuizWebResponseToAllQuizWebResponseConverter implements ListToEntityConverter<QuizWebResponse, AllQuizWebResponse>{
 	private final String qstTagName;
 	

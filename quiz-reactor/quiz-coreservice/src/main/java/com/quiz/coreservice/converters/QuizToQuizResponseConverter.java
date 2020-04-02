@@ -12,7 +12,7 @@ import com.quiz.coreservice.repository.entities.Question;
 import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.framework.converter.Converter;
 
-@Component
+@Component("quizToQuizResponseConverter")
 public class QuizToQuizResponseConverter implements Converter<Quiz, QuizResponse> {
 
 	private final Converter<Question, QuestionResponse> qstConv;

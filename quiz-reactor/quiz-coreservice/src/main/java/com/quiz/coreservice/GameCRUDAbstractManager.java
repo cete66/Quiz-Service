@@ -11,14 +11,14 @@ public abstract class GameCRUDAbstractManager<I, O, SI, SO> implements GameCRUDM
 	private final Converter<SO, O> fromCoreConverter;
 	private final Converter<I, SI> toCoreConverter;
 	private final ListConverter<SO, O> fromCoreListConverter;
+
 	
 	public GameCRUDAbstractManager(final GameCRUDService<SI, SO> service, 
 			final Converter<SO, O> fromCoreConverter,
-			final Converter<I, SI> toCoreConverter,
-			final ListConverter<SO, O> fromCoreListConverter){
+			final Converter<I, SI> toCoreConverter){
 		this.service = service;
 		this.fromCoreConverter = fromCoreConverter;
-		this.fromCoreListConverter = fromCoreListConverter;
+		this.fromCoreListConverter = new ListConverter<SO, O>(fromCoreConverter);
 		this.toCoreConverter = toCoreConverter;
 	}
 	

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,13 +23,15 @@ import com.quiz.coreservice.GameCRUDManager;
 import com.quiz.request.OptionWebRequest;
 import com.quiz.response.OptionWebResponse;
 
-@RestController
+@RestController("optionController")
 @RequestMapping(path = "/game/option")
 @Validated
 public class OptionController extends GameCRUDAbstractController<OptionWebRequest, OptionWebResponse>{
 
 	@Autowired
-	public OptionController(GameCRUDManager<OptionWebRequest, OptionWebResponse> manager) {
+	public OptionController(
+			@Qualifier("optionManagerImpl")
+			final GameCRUDManager<OptionWebRequest, OptionWebResponse> manager) {
 		super(manager);
 	}
 

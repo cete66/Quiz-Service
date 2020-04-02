@@ -6,7 +6,7 @@ import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.framework.converter.Converter;
 
-@Component
+@Component("optionRequestToOptionConverter")
 public class OptionRequestToOptionConverter implements Converter<OptionRequest, Option> {
 
 	@Override

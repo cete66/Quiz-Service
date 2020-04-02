@@ -12,7 +12,7 @@ import com.quiz.framework.converter.Converter;
 import com.quiz.response.QuestionWebResponse;
 import com.quiz.response.QuizWebResponse;
 
-@Component
+@Component("quizResponseToQuizWebResponseConverter")
 public class QuizResponseToQuizWebResponseConverter 
 implements Converter<QuizResponse, QuizWebResponse> {
 

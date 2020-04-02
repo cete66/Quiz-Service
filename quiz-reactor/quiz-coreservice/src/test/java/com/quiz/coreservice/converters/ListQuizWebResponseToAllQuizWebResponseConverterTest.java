@@ -46,7 +46,9 @@ public class ListQuizWebResponseToAllQuizWebResponseConverterTest {
 	
 	@BeforeEach
 	public void setUp() {
+		this.qstTagName = "q";
 		this.converter = new ListQuizWebResponseToAllQuizWebResponseConverter(qstTagName);
+		
 	}
 	
 	@Test
@@ -70,9 +72,7 @@ public class ListQuizWebResponseToAllQuizWebResponseConverterTest {
 	}
 
 	private List<QuizWebResponse> initToConvert() {
-		return Arrays.asList(quizBuilder.build(), 
-				quizBuilder.withName("quiz2")
-				.build());
+		return Arrays.asList(quizBuilder.build(), quizBuilder.build().cloneBuilder().withName("quiz2").build());
 	}
 
 	private Map<String, Map<String, QuestionWebResponse>> 
@@ -93,10 +93,7 @@ public class ListQuizWebResponseToAllQuizWebResponseConverterTest {
 
 	private AllQuizWebResponse initExpected() {
 		return AllQuizWebResponse.builder()
-				.withQuiz(generateMap(
-						Arrays.asList(quizBuilder.build(), 
-										quizBuilder.withName("quiz2")
-										.build())))
+				.withQuiz(generateMap(Arrays.asList(quizBuilder.build(), quizBuilder.build().cloneBuilder().withName("quiz2").build())))
 				.build();
 	}
 }

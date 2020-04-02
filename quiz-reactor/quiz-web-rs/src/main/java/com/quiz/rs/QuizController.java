@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +25,7 @@ import com.quiz.request.QuizWebRequest;
 import com.quiz.response.AllQuizWebResponse;
 import com.quiz.response.QuizWebResponse;
 
-@RestController
+@RestController("quizController")
 @RequestMapping(path = "/game/quiz")
 @Validated
 public class QuizController extends GameCRUDAbstractController<QuizWebRequest, QuizWebResponse>{
@@ -32,7 +33,10 @@ public class QuizController extends GameCRUDAbstractController<QuizWebRequest, Q
 	private final QuizManager quizManager;
 	
 	@Autowired
-	public QuizController(final GameCRUDManager<QuizWebRequest, QuizWebResponse> manager,
+	public QuizController(
+			@Qualifier("quizManagerImpl")
+			final GameCRUDManager<QuizWebRequest, QuizWebResponse> manager,
+			@Qualifier("quizManagerImpl")
 			final QuizManager quizManager) {
 		super(manager);
 		this.quizManager = quizManager;

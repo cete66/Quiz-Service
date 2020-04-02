@@ -88,7 +88,7 @@ public class Quiz extends AbstractModelBean {
 	}
 
 	public QuizBuilder cloneBuilder() {
-		return new QuizBuilder();
+		return new QuizBuilder(this);
 	}
 
 	public static final class QuizBuilder {

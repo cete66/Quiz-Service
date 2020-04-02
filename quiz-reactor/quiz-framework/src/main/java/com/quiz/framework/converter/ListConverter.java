@@ -5,12 +5,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class ListConverter<T, K> implements Converter<List<T>, List<K>> {
 
 	private final Converter<T, K> converter;
 
-	public ListConverter(Converter<T, K> converter) {
+	public ListConverter(final Converter<T, K> converter) {
 		this.converter = converter;
 	}
 

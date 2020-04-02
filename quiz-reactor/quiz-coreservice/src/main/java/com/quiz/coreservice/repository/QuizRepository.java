@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.quiz.coreservice.repository.entities.Quiz;
 
-@Repository
+@Repository("quizRepository")
 @Transactional
 public interface QuizRepository extends GameCRUDRepository<Quiz>{
 
