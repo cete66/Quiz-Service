@@ -3,6 +3,9 @@ package com.quiz.request;
 import java.util.Collections;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.quiz.framework.domain.AbstractModelBean;
 
@@ -10,7 +13,9 @@ import com.quiz.framework.domain.AbstractModelBean;
 public class QuizWebRequest extends AbstractModelBean {
 
 	private final String id;
+	@NotBlank
 	private final String name;
+	@NotEmpty
 	private final List<QuestionWebRequest> questions;
 
 	private QuizWebRequest(QuizWebRequestBuilder builder) {
