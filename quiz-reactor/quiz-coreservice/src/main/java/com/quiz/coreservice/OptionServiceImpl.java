@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.domain.OptionResponse;
+import com.quiz.coreservice.repository.GameCRUDRepository;
 import com.quiz.coreservice.repository.OptionRepository;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.framework.converter.Converter;
@@ -18,12 +19,12 @@ public class OptionServiceImpl extends
 			GameCRUDAbstractService<Option, OptionRequest, OptionResponse> {
 
 	@Autowired
-	public OptionServiceImpl(OptionRepository repository, 
-			Converter<Option, OptionResponse> fromCoreConverter,
-			ListConverter<Option, OptionResponse> listConverter, 
-			Converter<OptionRequest, Option> toCoreConverter,
+	public OptionServiceImpl(final GameCRUDRepository<Option> repository, 
+			final Converter<Option, OptionResponse> fromCoreConverter,
+			final ListConverter<Option, OptionResponse> listConverter, 
+			final Converter<OptionRequest, Option> toCoreConverter,
 			@Value("${com.quiz.coreservice.repository.error.update.message}") 
-			String errorUpdatingEntity) {
+			final String errorUpdatingEntity) {
 		super(repository, fromCoreConverter, listConverter, 
 				toCoreConverter, errorUpdatingEntity);
 	}

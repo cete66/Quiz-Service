@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.quiz.coreservice.domain.QuizRequest;
 import com.quiz.coreservice.domain.QuizResponse;
-import com.quiz.coreservice.repository.QuizRepository;
+import com.quiz.coreservice.repository.GameCRUDRepository;
 import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.framework.converter.Converter;
 import com.quiz.framework.converter.ListConverter;
@@ -18,7 +18,7 @@ public class QuizServiceImpl extends
 			GameCRUDAbstractService<Quiz, QuizRequest, QuizResponse>{
 
 	@Autowired
-	public QuizServiceImpl(final QuizRepository repository, 
+	public QuizServiceImpl(final GameCRUDRepository<Quiz> repository, 
 			final Converter<Quiz, QuizResponse> fromCoreConverter,
 			final ListConverter<Quiz, QuizResponse> listConverter, 
 			final Converter<QuizRequest, Quiz> toCoreConverter,

@@ -25,7 +25,7 @@ public class QuestionWebRequestToQuestionRequestConverter
 	}
 
 	@Override
-	public QuestionRequest convert(QuestionWebRequest from) {
+	public QuestionRequest convert(final QuestionWebRequest from) {
 		if (from == null) {
 			return null;
 		}

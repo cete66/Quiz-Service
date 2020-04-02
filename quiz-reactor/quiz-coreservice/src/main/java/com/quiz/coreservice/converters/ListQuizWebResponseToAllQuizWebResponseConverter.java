@@ -26,7 +26,7 @@ public class ListQuizWebResponseToAllQuizWebResponseConverter implements ListToE
 	}
 	
 	@Override
-	public AllQuizWebResponse convert(List<QuizWebResponse> from) {
+	public AllQuizWebResponse convert(final List<QuizWebResponse> from) {
 		
 		if (from == null || from.isEmpty()) {
 			return null;

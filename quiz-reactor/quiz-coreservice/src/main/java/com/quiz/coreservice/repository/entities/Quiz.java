@@ -1,14 +1,12 @@
 package com.quiz.coreservice.repository.entities;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.quiz.framework.domain.AbstractModelBean;
-
-import javax.annotation.Generated;
-import java.util.Collections;
 
 @Document
 public class Quiz extends AbstractModelBean {

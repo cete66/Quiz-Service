@@ -1,13 +1,10 @@
 package com.quiz.response;
 
+import java.util.Collections;
 import java.util.Map;
-
-import javax.annotation.Generated;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.quiz.framework.domain.AbstractModelBean;
-
-import java.util.Collections;
 
 @JsonDeserialize(builder = AllQuizWebResponse.AllQuizWebResponseBuilder.class)
 public class AllQuizWebResponse extends AbstractModelBean{

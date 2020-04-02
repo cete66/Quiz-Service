@@ -10,7 +10,7 @@ import com.quiz.framework.converter.Converter;
 public class OptionRequestToOptionConverter implements Converter<OptionRequest, Option> {
 
 	@Override
-	public Option convert(OptionRequest from) {
+	public Option convert(final OptionRequest from) {
 		if (from == null) {
 			return null;
 		}

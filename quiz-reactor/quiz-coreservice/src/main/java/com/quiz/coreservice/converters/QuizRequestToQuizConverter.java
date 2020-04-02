@@ -24,7 +24,7 @@ public class QuizRequestToQuizConverter implements Converter<QuizRequest, Quiz> 
 	}
 	
 	@Override
-	public Quiz convert(QuizRequest from) {
+	public Quiz convert(final QuizRequest from) {
 		if (from == null) {
 			return null;
 		}

@@ -10,7 +10,7 @@ import com.quiz.request.OptionWebRequest;
 public class OptionWebRequestToOptionRequestConverter implements Converter<OptionWebRequest, OptionRequest>{
 
 	@Override
-	public OptionRequest convert(OptionWebRequest from) {
+	public OptionRequest convert(final OptionWebRequest from) {
 		if (from == null) {
 			return null;
 		}

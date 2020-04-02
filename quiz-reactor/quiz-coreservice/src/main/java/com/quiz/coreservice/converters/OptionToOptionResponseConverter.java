@@ -2,7 +2,6 @@ package com.quiz.coreservice.converters;
 
 import org.springframework.stereotype.Component;
 
-import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.domain.OptionResponse;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.framework.converter.Converter;
@@ -12,7 +11,7 @@ public class OptionToOptionResponseConverter
 implements Converter<Option, OptionResponse> {
 
 	@Override
-	public OptionResponse convert(Option from) {
+	public OptionResponse convert(final Option from) {
 		if (from == null) {
 			return null;
 		}

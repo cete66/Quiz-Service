@@ -8,9 +8,7 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.domain.OptionResponse;
-import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.domain.QuestionResponse;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.coreservice.repository.entities.Question;

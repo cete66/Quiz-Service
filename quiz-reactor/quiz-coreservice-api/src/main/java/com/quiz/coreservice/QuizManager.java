@@ -1,5 +1,5 @@
 package com.quiz.coreservice;
 
-public interface QuizManager {
+public interface QuizManager extends AllQuizWebResponseGenerator {
 
 }

@@ -5,8 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.quiz.framework.domain.AbstractModelBean;
 
-import javax.annotation.Generated;
-
 @Document
 public class Option extends AbstractModelBean {
 

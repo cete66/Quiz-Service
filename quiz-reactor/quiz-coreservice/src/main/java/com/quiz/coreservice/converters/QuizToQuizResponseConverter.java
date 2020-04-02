@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.domain.QuestionResponse;
-import com.quiz.coreservice.domain.QuizRequest;
 import com.quiz.coreservice.domain.QuizResponse;
 import com.quiz.coreservice.repository.entities.Question;
 import com.quiz.coreservice.repository.entities.Quiz;
@@ -26,7 +24,7 @@ public class QuizToQuizResponseConverter implements Converter<Quiz, QuizResponse
 	}
 	
 	@Override
-	public QuizResponse convert(Quiz from) {
+	public QuizResponse convert(final Quiz from) {
 		if (from == null) {
 			return null;
 		}

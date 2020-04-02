@@ -11,8 +11,6 @@ import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.coreservice.repository.entities.Question;
 import com.quiz.framework.converter.Converter;
-import com.quiz.request.OptionWebRequest;
-import com.quiz.request.QuestionWebRequest;
 
 @Component
 public class QuestionRequestToQuestionConverter 
@@ -27,7 +25,7 @@ public class QuestionRequestToQuestionConverter
 	}
 
 	@Override
-	public Question convert(QuestionRequest from) {
+	public Question convert(final QuestionRequest from) {
 		if (from == null) {
 			return null;
 		}

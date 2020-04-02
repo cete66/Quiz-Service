@@ -2,11 +2,6 @@ package com.quiz.coreservice;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Example;
-
-import com.quiz.coreservice.repository.GameCRUDRepository;
 import com.quiz.framework.converter.Converter;
 import com.quiz.framework.converter.ListConverter;
 

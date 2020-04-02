@@ -25,7 +25,7 @@ public class QuestionResponseToQuestionWebResponseConverter
 	}
 
 	@Override
-	public QuestionWebResponse convert(QuestionResponse from) {
+	public QuestionWebResponse convert(final QuestionResponse from) {
 		if (from == null) {
 			return null;
 		}

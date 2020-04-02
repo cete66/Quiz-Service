@@ -5,10 +5,7 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.domain.OptionResponse;
-import com.quiz.coreservice.repository.entities.Option;
-import com.quiz.request.OptionWebRequest;
 import com.quiz.response.OptionWebResponse;
 
 public class OptionResponseToOptionWebResponseConverterTest {
