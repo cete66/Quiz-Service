@@ -1,5 +1,7 @@
 package com.quiz.request;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.quiz.framework.domain.AbstractModelBean;
 
@@ -7,6 +9,7 @@ import com.quiz.framework.domain.AbstractModelBean;
 public class OptionWebRequest extends AbstractModelBean {
 
 	private final String id;
+	@NotBlank
 	private final String value;
 	private final Boolean correct;
 
