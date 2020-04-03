@@ -93,8 +93,8 @@ public class QuestionManagerImplTest {
 	
 	@Test
 	public void givenValidDocumentShouldUpdateOk() {
-		Mockito.doReturn(qstCoreResp).when(this.service).update(ArgumentMatchers.eq(qstCoreReq));
-		QuestionWebResponse actual = this.manager.update(qstWebReq);
+		Mockito.doReturn(qstCoreResp).when(this.service).update(ArgumentMatchers.eq(qstCoreReq), ArgumentMatchers.eq(qstCoreReq.getId()));
+		QuestionWebResponse actual = this.manager.update(qstWebReq, qstWebReq.getId());
 		MatcherAssert.assertThat(actual, Matchers.is(qstWebResp));
 	}
 }

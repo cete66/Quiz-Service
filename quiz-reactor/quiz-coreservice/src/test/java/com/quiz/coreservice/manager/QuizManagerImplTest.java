@@ -107,8 +107,8 @@ public class QuizManagerImplTest {
 	
 	@Test
 	public void givenValidDocumentShouldUpdateOk() {
-		Mockito.doReturn(qzCoreResp).when(this.service).update(ArgumentMatchers.eq(qzCoreReq));
-		QuizWebResponse actual = this.manager.update(qzWebReq);
+		Mockito.doReturn(qzCoreResp).when(this.service).update(ArgumentMatchers.eq(qzCoreReq), ArgumentMatchers.eq(qzCoreReq.getId()));
+		QuizWebResponse actual = this.manager.update(qzWebReq, qzWebReq.getId());
 		MatcherAssert.assertThat(actual, Matchers.is(qzWebResp));
 	}
 	

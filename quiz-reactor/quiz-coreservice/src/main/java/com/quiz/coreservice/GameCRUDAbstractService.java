@@ -47,12 +47,11 @@ public abstract class GameCRUDAbstractService<T, E, R, ID>{
 				.insert(toCoreConverter.convert(entity)));
 	}
 
-	public R update(E entity) {
-		T coreEntity = toCoreConverter.convert(entity);
-		if (!this.repository.findOne(Example.of(coreEntity)).isPresent()) {
-			throw new EmptyResultDataAccessException(errorUpdatingEntity, 1);
-		}
+	public R update(E entity, ID id) {
+		this.repository.findById(id)
+		.orElseThrow(() -> new EmptyResultDataAccessException(errorUpdatingEntity, 1));
+
 		return this.fromCoreConverter.convert(this.repository
-									.save(coreEntity));
+									.save(toCoreConverter.convert(entity)));
 	}
 }

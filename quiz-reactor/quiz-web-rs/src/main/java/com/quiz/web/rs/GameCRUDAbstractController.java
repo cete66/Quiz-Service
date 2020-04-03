@@ -29,25 +29,19 @@ public abstract class GameCRUDAbstractController<I, O, SI, SO, ID, T>{
 		this.manager = manager;
 	}
 	
-	public ResponseEntity<List<O>> findAll() {
-		return ResponseEntity.ok(this.manager.findAll());
+	protected GameCRUDAbstractManager<I, O, SI, SO, ID, T> getManager() {
+		return manager;
 	}
 	
-	public ResponseEntity<O> findById(@Valid @NotBlank ID id) {
-		return ResponseEntity.ok(this.manager.findById(id));
-	}
+	public abstract ResponseEntity<List<O>> findAll();
 	
-	public ResponseEntity<Boolean> deleteById(@Valid @NotBlank ID id) {
-		return ResponseEntity.ok(this.manager.deleteById(id));
-	}
+	public abstract ResponseEntity<O> findById(@Valid @NotBlank ID id);
 	
-	public ResponseEntity<O> create(@Valid I entity) {
-		return ResponseEntity.ok(this.manager.create(entity));
-	}
+	public abstract ResponseEntity<Boolean> deleteById(@Valid @NotBlank ID id);
 	
-	public ResponseEntity<O> update(@Valid I entity) {
-		return ResponseEntity.ok(this.manager.update(entity));
-	}
+	public abstract ResponseEntity<O> create(@Valid I entity);
+	
+	public abstract ResponseEntity<O> update(@Valid I entity);
 	
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler({	InvalidParameterException.class,

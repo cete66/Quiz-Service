@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,52 +31,54 @@ import com.quiz.response.OptionWebResponse;
 @RestController("optionController")
 @RequestMapping(path = "/game/option")
 @Validated
-public class OptionController extends GameCRUDAbstractController<OptionWebRequest, OptionWebResponse, OptionRequest, OptionResponse, String, Option>{
+public class OptionController {
 
+	private final OptionManagerImpl manager;
+	
 	@Autowired
 	public OptionController(
+			@Qualifier("optionManagerImpl")
 			final OptionManagerImpl manager) {
-		super(manager);
+		this.manager = manager;
 	}
 
-	@Override
 	@GetMapping(path = "/findAll",
-				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<List<OptionWebResponse>> findAll() {
-		return super.findAll();
+		return ResponseEntity.ok(manager.findAll());
 	}
 	
-	@Override
+
 	@GetMapping(path = "/findById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<OptionWebResponse> findById(@PathParam("id") final String id) {
-		return super.findById(id);
+	public ResponseEntity<OptionWebResponse> findById(@PathVariable("id") @NotBlank final String id) {
+		return  ResponseEntity.ok(manager.findById(id));
 	}
 	
-	@Override
+
 	@DeleteMapping(path = "/deleteById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<Boolean> deleteById(@PathParam("id") final String id) {
-		return super.deleteById(id);
+	public ResponseEntity<Boolean> deleteById(@PathVariable("id") @NotBlank final String id) {
+		return  ResponseEntity.ok(manager.deleteById(id));
 	}
 	
-	@Override
+
 	@PostMapping(path = "/create",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<OptionWebResponse> create(@RequestBody final OptionWebRequest entity) {
-		return super.create(entity);
+	public ResponseEntity<OptionWebResponse> create(@RequestBody @Valid final OptionWebRequest entity) {
+		return  ResponseEntity.ok(manager.create(entity));
 	}
 	
-	@Override
+
 	@PutMapping(path = "/update",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<OptionWebResponse> update(@RequestBody final OptionWebRequest entity) {
-		return super.update(entity);
+	public ResponseEntity<OptionWebResponse> update(@RequestBody @Valid final OptionWebRequest entity) {
+		return  ResponseEntity.ok(manager.update(entity, entity.getId()));
 	}
 	
 }

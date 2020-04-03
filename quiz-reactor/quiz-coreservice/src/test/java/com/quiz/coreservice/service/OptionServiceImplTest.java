@@ -94,9 +94,9 @@ public class OptionServiceImplTest {
 		OptionRequest dataUpdt = data.cloneBuilder().withValue("asdasdasd").build();
 		Option coreUpdt = toCoreConverter.convert(dataUpdt);
 		Optional<Option> optCoreData = Optional.ofNullable(coreUpdt);
-		Mockito.doReturn(optCoreData).when(this.repository).findOne(ArgumentMatchers.eq(Example.of(coreUpdt)));
+		Mockito.doReturn(optCoreData).when(this.repository).findById(ArgumentMatchers.eq(coreUpdt.getId()));
 		Mockito.doReturn(coreUpdt).when(this.repository).save(ArgumentMatchers.eq(coreUpdt));
-		OptionResponse actualUpdt = this.service.update(dataUpdt);
+		OptionResponse actualUpdt = this.service.update(dataUpdt, dataUpdt.getId());
 		OptionResponse exptUpd = this.fromCoreConverter.convert(coreUpdt);
 		MatcherAssert.assertThat(actualUpdt, Matchers.is(exptUpd));
 	}

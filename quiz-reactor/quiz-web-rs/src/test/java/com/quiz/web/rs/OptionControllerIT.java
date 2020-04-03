@@ -1,7 +1,6 @@
 package com.quiz.web.rs;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -40,6 +40,9 @@ public class OptionControllerIT {
 	private static final String ENDPOINT = "/option";
 	private static final String FIND_ALL = "/findAll";
 	private static final String CREATE = "/create";
+	private static final String UPDATE = "/update";
+	private static final String DELETE = "/deleteById/{id}";
+	private static final String FIND_BY_ID = "/findById/{id}";
 	private static ObjectMapper objectMapper;
 	private final OptionWebRequestBuilder webRequestBuilder = OptionWebRequest.builder()
 																				.withValue(VALID_VALUE);
@@ -93,6 +96,81 @@ public class OptionControllerIT {
 					new TypeReference<List<OptionWebResponse>>() {});
 		}
 		MatcherAssert.assertThat(response.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));	
+	}
+	
+	@Test
+	public void givenValidDocumentIdShouldFindByIdReturnDocument() throws JsonProcessingException, Exception {
+		
+		OptionWebRequest req = this.webRequestBuilder.build();
+		
+		MockHttpServletResponse response = doInsert(req);
+
+		OptionWebResponse actual = objectMapper.readValue(response.getContentAsString(),
+				OptionWebResponse.class);
+		MockHttpServletResponse responseDel =  mockMvc
+				.perform(delete(ROOT + ENDPOINT + DELETE, actual.getId())
+						.contentType(MediaType.APPLICATION_JSON_UTF8)
+						.accept(MediaType.APPLICATION_JSON_UTF8))
+				.andReturn().getResponse();
+		Boolean actualDel = objectMapper.readValue(responseDel.getContentAsString(), Boolean.class);
+		OptionWebResponse expected = OptionWebResponse.builder().withId(actual.getId()).withValue(req.getValue()).build();
+		MatcherAssert.assertThat(actual, Matchers.is(expected));
+		MatcherAssert.assertThat(response.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
+		MatcherAssert.assertThat(responseDel.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
+		MatcherAssert.assertThat(actualDel, Matchers.is(Boolean.TRUE));
+		
+	}
+	
+	@Test
+	public void givenValidDocumentShouldUpdateOk() throws JsonProcessingException, Exception {
+		
+		OptionWebRequest req = this.webRequestBuilder.build();
+		
+		MockHttpServletResponse response = doInsert(req);
+
+		OptionWebResponse actual = objectMapper.readValue(response.getContentAsString(),
+				OptionWebResponse.class);
+		MockHttpServletResponse responseDel =  mockMvc
+				.perform(get(ROOT + ENDPOINT + FIND_BY_ID, actual.getId())
+						.contentType(MediaType.APPLICATION_JSON_UTF8)
+						.accept(MediaType.APPLICATION_JSON_UTF8))
+				.andReturn().getResponse();
+		OptionWebResponse actualFind = objectMapper.readValue(responseDel.getContentAsString(), OptionWebResponse.class);
+		OptionWebResponse expected = OptionWebResponse.builder().withId(actual.getId()).withValue(req.getValue()).build();
+		MatcherAssert.assertThat(actual, Matchers.is(expected));
+		MatcherAssert.assertThat(response.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
+		MatcherAssert.assertThat(responseDel.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
+		MatcherAssert.assertThat(actualFind, Matchers.is(actual));
+		
+	}
+	
+	@Test
+	public void givenValidDocumentIdShouldDeleteByIdOk() throws JsonProcessingException, Exception {
+		
+		OptionWebRequest req = this.webRequestBuilder.build();
+		
+		MockHttpServletResponse response = doInsert(req);
+
+		OptionWebResponse actual = objectMapper.readValue(response.getContentAsString(),
+				OptionWebResponse.class);
+		OptionWebRequest reqUpdt = OptionWebRequest.builder().withId(actual.getId()).withValue("asdasd").build();
+		MockHttpServletResponse responseUpdt =  mockMvc
+				.perform(put(ROOT + ENDPOINT + UPDATE)
+						.contentType(MediaType.APPLICATION_JSON_UTF8)
+						.accept(MediaType.APPLICATION_JSON_UTF8)
+						.content(objectMapper
+								.writeValueAsString(reqUpdt)))
+				.andReturn().getResponse();
+		OptionWebResponse actualUpdt = objectMapper.readValue(responseUpdt.getContentAsString(), OptionWebResponse.class);
+		OptionWebResponse expected = OptionWebResponse.builder().withId(actual.getId()).withValue(req.getValue()).build();
+		OptionWebResponse expUpdt = OptionWebResponse.builder().withId(reqUpdt.getId()).withValue(reqUpdt.getValue()).build();
+		
+		MatcherAssert.assertThat(actual, Matchers.is(expected));
+		MatcherAssert.assertThat(actualUpdt, Matchers.is(expUpdt));
+		MatcherAssert.assertThat(response.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
+		MatcherAssert.assertThat(responseUpdt.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
+		
+		
 	}
 	
 	private MockHttpServletResponse doInsert(OptionWebRequest webRequest) throws JsonProcessingException, Exception {

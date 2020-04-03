@@ -115,9 +115,9 @@ public class QuizServiceImplTest {
 		QuizRequest dataUpdt = qzReqData.cloneBuilder().withName("dkj").build();
 		Quiz coreUpdt = qzToCoreConverter.convert(dataUpdt);
 		Optional<Quiz> optCoreData = Optional.ofNullable(coreUpdt);
-		Mockito.doReturn(optCoreData).when(this.repository).findOne(ArgumentMatchers.eq(Example.of(coreUpdt)));
+		Mockito.doReturn(optCoreData).when(this.repository).findById(ArgumentMatchers.eq(coreUpdt.getId()));
 		Mockito.doReturn(coreUpdt).when(this.repository).save(ArgumentMatchers.eq(coreUpdt));
-		QuizResponse actualUpdt = this.service.update(dataUpdt);
+		QuizResponse actualUpdt = this.service.update(dataUpdt, dataUpdt.getId());
 		QuizResponse exptUpd = this.qzFromCoreConverter.convert(coreUpdt);
 		MatcherAssert.assertThat(actualUpdt, Matchers.is(exptUpd));
 	}

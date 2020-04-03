@@ -72,8 +72,8 @@ public class OptionManagerImplTest {
 	
 	@Test
 	public void givenValidDocumentShouldUpdateOk() {
-		Mockito.doReturn(optCoreResp).when(this.service).update(ArgumentMatchers.eq(optCoreReq));
-		OptionWebResponse actual = this.manager.update(optWebReq);
+		Mockito.doReturn(optCoreResp).when(this.service).update(ArgumentMatchers.eq(optCoreReq), ArgumentMatchers.eq(optCoreReq.getId()));
+		OptionWebResponse actual = this.manager.update(optWebReq, optWebReq.getId());
 		MatcherAssert.assertThat(actual, Matchers.is(optWebResp));
 	}
 }

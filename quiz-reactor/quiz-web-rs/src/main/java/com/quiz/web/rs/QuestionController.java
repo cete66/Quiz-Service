@@ -13,12 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quiz.coreservice.GameCRUDAbstractManager;
 import com.quiz.coreservice.domain.QuestionRequest;
 import com.quiz.coreservice.domain.QuestionResponse;
 import com.quiz.coreservice.manager.QuestionManagerImpl;
@@ -29,53 +31,55 @@ import com.quiz.response.QuestionWebResponse;
 @RestController("questionController")
 @RequestMapping(path = "/game/question")
 @Validated
-public class QuestionController extends GameCRUDAbstractController<QuestionWebRequest, QuestionWebResponse, QuestionRequest, QuestionResponse, String, Question>{
+public class QuestionController{
 
+	private final QuestionManagerImpl manager;
+	
 	@Autowired
 	public QuestionController(
 			@Qualifier("questionManagerImpl")
 			final QuestionManagerImpl manager) {
-		super(manager);
+		this.manager = manager;
 	}
 	
-	@Override
+
 	@GetMapping(path = "/findAll",
-				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<List<QuestionWebResponse>> findAll() {
-		return super.findAll();
+		return ResponseEntity.ok(manager.findAll());
 	}
 	
-	@Override
+
 	@GetMapping(path = "/findById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<QuestionWebResponse> findById(@PathParam("id") @Valid @NotBlank final String id) {
-		return super.findById(id);
+	public ResponseEntity<QuestionWebResponse> findById(@PathVariable("id") @NotBlank final String id) {
+		return ResponseEntity.ok(manager.findById(id));
 	}
 	
-	@Override
+
 	@DeleteMapping(path = "/deleteById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<Boolean> deleteById(@PathParam("id") @Valid @NotBlank final String id) {
-		return super.deleteById(id);
+	public ResponseEntity<Boolean> deleteById(@PathVariable("id") @NotBlank final String id) {
+		return ResponseEntity.ok(manager.deleteById(id));
 	}
 	
-	@Override
+
 	@PostMapping(path = "/create",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<QuestionWebResponse> create(@RequestBody @Valid final QuestionWebRequest entity) {
-		return super.create(entity);
+		return ResponseEntity.ok(manager.create(entity));
 	}
 	
-	@Override
+
 	@PutMapping(path = "/update",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<QuestionWebResponse> update(@RequestBody @Valid final QuestionWebRequest entity) {
-		return super.update(entity);
+		return ResponseEntity.ok(manager.update(entity, entity.getId()));
 	}
 
 }

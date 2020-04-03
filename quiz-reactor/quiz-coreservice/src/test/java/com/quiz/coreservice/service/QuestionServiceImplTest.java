@@ -105,9 +105,9 @@ public class QuestionServiceImplTest {
 		QuestionRequest dataUpdt = qstReqData.cloneBuilder().withAnswer(data.cloneBuilder().withValue("asdasdsdasd").build()).build();
 		Question coreUpdt = qstToCoreConverter.convert(dataUpdt);
 		Optional<Question> optCoreData = Optional.ofNullable(coreUpdt);
-		Mockito.doReturn(optCoreData).when(this.repository).findOne(ArgumentMatchers.eq(Example.of(coreUpdt)));
+		Mockito.doReturn(optCoreData).when(this.repository).findById(ArgumentMatchers.eq(coreUpdt.getId()));
 		Mockito.doReturn(coreUpdt).when(this.repository).save(ArgumentMatchers.eq(coreUpdt));
-		QuestionResponse actualUpdt = this.service.update(dataUpdt);
+		QuestionResponse actualUpdt = this.service.update(dataUpdt, dataUpdt.getId());
 		QuestionResponse exptUpd = this.qstFromCoreConverter.convert(coreUpdt);
 		MatcherAssert.assertThat(actualUpdt, Matchers.is(exptUpd));
 	}

@@ -42,9 +42,9 @@ public abstract class GameCRUDAbstractManager<I, O, SI, SO, ID, T>{
 						this.toCoreConverter.convert(entity)));
 	}
 	
-	public O update(I entity) {
+	public O update(I entity, ID id) {
 		return this.fromCoreConverter.convert(
 				this.service.update(
-						this.toCoreConverter.convert(entity)));
+						this.toCoreConverter.convert(entity), id));
 	}
 }
