@@ -45,7 +45,6 @@ public class QuizServiceImplTest {
 	private Converter<QuizRequest, Quiz> qzToCoreConverter;
 	@Mock
 	private QuizRepository repository;
-	@InjectMocks
 	private QuizServiceImpl service;
 	private String errorUpdatingEntity;
 	private OptionRequest data = OptionRequest.builder().withId("1").withValue("v").build();

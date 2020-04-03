@@ -38,7 +38,6 @@ public class QuestionServiceImplTest {
 	private Converter<QuestionRequest, Question> qstToCoreConverter;
 	@Mock
 	private QuestionRepository repository;
-	@InjectMocks
 	private QuestionServiceImpl service;
 	private String errorUpdatingEntity;
 	private OptionRequest data = OptionRequest.builder().withId("1").withValue("v").build();

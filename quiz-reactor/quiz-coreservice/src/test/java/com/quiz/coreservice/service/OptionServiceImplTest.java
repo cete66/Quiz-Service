@@ -32,7 +32,6 @@ public class OptionServiceImplTest {
 	private Converter<OptionRequest, Option> toCoreConverter;
 	@Mock
 	private OptionRepository repository;
-	@InjectMocks
 	private OptionServiceImpl service;
 	private String errorUpdatingEntity;
 	private OptionRequest data = OptionRequest.builder().withId("1").withValue("v").build();
