@@ -1,6 +1,9 @@
-package com.quiz.web.res;
+package com.quiz.web.rs;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import java.util.List;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.TestPropertySource;
@@ -19,13 +23,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.quiz.coreservice.manager.OptionManagerImpl;
+import com.quiz.QuizServiceApplication;
 import com.quiz.request.OptionWebRequest;
 import com.quiz.request.OptionWebRequest.OptionWebRequestBuilder;
 import com.quiz.response.OptionWebResponse;
-import com.quiz.web.QuizServiceApplication;
-import com.quiz.web.rs.OptionController;
 
 @SpringBootTest(classes = QuizServiceApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "/application.properties")
@@ -39,16 +42,12 @@ public class OptionControllerIT {
 	private static final String CREATE = "/create";
 	private static ObjectMapper objectMapper;
 	private final OptionWebRequestBuilder webRequestBuilder = OptionWebRequest.builder()
-																				.withId(ID)
 																				.withValue(VALID_VALUE);
 
 	MockMvc mockMvc;
 
 	@Autowired
 	protected WebApplicationContext wac;
-	@Autowired
-	@Qualifier("optionManagerImpl")
-	OptionManagerImpl manager;
 	@Autowired
 	@Qualifier("optionController")
 	OptionController controller;
@@ -61,34 +60,47 @@ public class OptionControllerIT {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		this.mockMvc = MockMvcBuilders.standaloneSetup(this.controller).build();
+		this.mockMvc = MockMvcBuilders.standaloneSetup(this.controller).build();;
 	}
 	
 	@Test
-	public void whenFindAllShouldReturnAllDocuments() throws JsonProcessingException, Exception {
+	public void givenValidDocumentShouldCreateAndReturnDocument() throws JsonProcessingException, Exception {
 		OptionWebRequest req = this.webRequestBuilder.build();
 		
-		MockHttpServletResponse response = mockMvc.perform(post(ROOT + ENDPOINT + CREATE).contentType(MediaType.APPLICATION_JSON_UTF8)
-				.accept(MediaType.APPLICATION_JSON_UTF8)
-				.content(objectMapper
-				.writeValueAsString(req)))
-		.andReturn().getResponse();
+		MockHttpServletResponse response = doInsert(req);
 
 		OptionWebResponse actual = objectMapper.readValue(response.getContentAsString(),
 				OptionWebResponse.class);
-		OptionWebResponse expected = OptionWebResponse.builder().withId(req.getId()).withValue(req.getValue()).build();
+		OptionWebResponse expected = OptionWebResponse.builder().withId(actual.getId()).withValue(req.getValue()).build();
 		MatcherAssert.assertThat(actual, Matchers.is(expected));
+		MatcherAssert.assertThat(response.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));
 	}
 	
-	/**
-	 * final TransactionStatusWebRequest request = TransactionStatusWebRequest.builder()
-				.withChannel(Channel.CLIENT)
-				.withReference(null).build();
-
-		mockMvc.perform(post(ROOT + STATUS).contentType(MediaType.APPLICATION_JSON_UTF8)
-								.accept(MediaType.APPLICATION_JSON_UTF8)
-								.content(objectMapper
-								.writeValueAsString(request)))
-		.andExpect(status().isBadRequest());
-	 */
+	@Test
+	public void doFindAllShouldReturnAllDocuments() throws Exception {
+		
+		OptionWebRequest req = this.webRequestBuilder.build();
+		doInsert(req);
+		
+		final MockHttpServletResponse response = mockMvc
+				.perform(get(ROOT + ENDPOINT + FIND_ALL)
+						.contentType(MediaType.APPLICATION_JSON_UTF8)
+						.accept(MediaType.APPLICATION_JSON_UTF8))
+				.andReturn().getResponse();
+		
+		if (!response.getContentAsString().trim().isEmpty()) {
+			objectMapper.readValue(response.getContentAsString(),
+					new TypeReference<List<OptionWebResponse>>() {});
+		}
+		MatcherAssert.assertThat(response.getStatus(), Matchers.is(Integer.valueOf(HttpStatus.OK.value())));	
+	}
+	
+	private MockHttpServletResponse doInsert(OptionWebRequest webRequest) throws JsonProcessingException, Exception {
+		return mockMvc.perform(post(ROOT + ENDPOINT + CREATE)
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.accept(MediaType.APPLICATION_JSON_UTF8)
+				.content(objectMapper
+				.writeValueAsString(webRequest)))
+		.andReturn().getResponse();
+	}
 }

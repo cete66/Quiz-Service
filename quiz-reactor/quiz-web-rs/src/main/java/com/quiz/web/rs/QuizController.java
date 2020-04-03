@@ -19,26 +19,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quiz.coreservice.GameCRUDManager;
 import com.quiz.coreservice.QuizManager;
-import com.quiz.request.QuestionWebRequest;
+import com.quiz.coreservice.domain.QuizRequest;
+import com.quiz.coreservice.domain.QuizResponse;
+import com.quiz.coreservice.manager.QuizManagerImpl;
+import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.request.QuizWebRequest;
 import com.quiz.response.AllQuizWebResponse;
-import com.quiz.response.QuestionWebResponse;
 import com.quiz.response.QuizWebResponse;
-import com.quiz.rs.GameCRUDController;
 
 @RestController("quizController")
 @RequestMapping(path = "/game/quiz")
 @Validated
-public class QuizController extends GameCRUDAbstractController<QuizWebRequest, QuizWebResponse> implements GameCRUDController<QuizWebRequest, QuizWebResponse>{
+public class QuizController extends GameCRUDAbstractController<QuizWebRequest, QuizWebResponse, QuizRequest, QuizResponse, String, Quiz>{
 
 	private final QuizManager quizManager;
 	
 	@Autowired
 	public QuizController(
 			@Qualifier("quizManagerImpl")
-			final GameCRUDManager<QuizWebRequest, QuizWebResponse> manager,
+			final QuizManagerImpl manager,
 			@Qualifier("quizManagerImpl")
 			final QuizManager quizManager) {
 		super(manager);

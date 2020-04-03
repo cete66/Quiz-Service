@@ -4,20 +4,20 @@ import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.quiz.coreservice.repository.GameCRUDRepository;
 import com.quiz.framework.converter.Converter;
 import com.quiz.framework.converter.ListConverter;
 
-public abstract class GameCRUDAbstractService<T, E, R> implements GameCRUDService<E, R>{
+public abstract class GameCRUDAbstractService<T, E, R, ID>{
 
-	private final GameCRUDRepository<T> repository;
+	private final MongoRepository<T, ID> repository;
 	private final Converter<T, R> fromCoreConverter;
 	private final Converter<E, T> toCoreConverter;
 	private final ListConverter<T, R> listConverter;
 	private final String errorUpdatingEntity;
 	
-	public GameCRUDAbstractService(final GameCRUDRepository<T> repository, 
+	public GameCRUDAbstractService(final MongoRepository<T, ID> repository, 
 			final Converter<T, R> fromCoreConverter,
 			final Converter<E, T> toCoreConverter,
 			final String errorUpdatingEntity){
@@ -29,29 +29,24 @@ public abstract class GameCRUDAbstractService<T, E, R> implements GameCRUDServic
 	}
 
 	
-	@Override
 	public List<R> findAll() {
 		return this.listConverter.convert(repository.findAll());
 	}
 
-	@Override
-	public R findById(String id) {
+	public R findById(ID id) {
 		return this.fromCoreConverter.convert(this.repository.findById(id).orElse(null));
 	}
 
-	@Override
-	public Integer deleteById(String id) {
+	public Integer deleteById(ID id) {
 		this.repository.deleteById(id);
 		return this.repository.findById(id).isPresent() ? -1 : 1;
 	}
 
-	@Override
 	public R create(E entity) {
 		return this.fromCoreConverter.convert(this.repository
 				.insert(toCoreConverter.convert(entity)));
 	}
 
-	@Override
 	public R update(E entity) {
 		T coreEntity = toCoreConverter.convert(entity);
 		if (!this.repository.findOne(Example.of(coreEntity)).isPresent()) {

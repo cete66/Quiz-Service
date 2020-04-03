@@ -3,24 +3,22 @@ package com.quiz.coreservice.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.quiz.coreservice.GameCRUDAbstractService;
-import com.quiz.coreservice.GameCRUDService;
 import com.quiz.coreservice.domain.QuizRequest;
 import com.quiz.coreservice.domain.QuizResponse;
-import com.quiz.coreservice.repository.GameCRUDRepository;
 import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.framework.converter.Converter;
 
 @Service("quizServiceImpl")
-@Transactional
-public class QuizServiceImpl extends GameCRUDAbstractService<Quiz, QuizRequest, QuizResponse> implements GameCRUDService<QuizRequest, QuizResponse>{
+public class QuizServiceImpl extends GameCRUDAbstractService<Quiz, QuizRequest, QuizResponse, String>{
 	@Autowired
 	public QuizServiceImpl(
 			@Qualifier("quizRepository")
-			final GameCRUDRepository<Quiz> repository,
+			final MongoRepository<Quiz, String> repository,
 			@Qualifier("quizToQuizResponseConverter")
 			final Converter<Quiz, QuizResponse> fromCoreConverter,
 			@Qualifier("quizRequestToQuizConverter")

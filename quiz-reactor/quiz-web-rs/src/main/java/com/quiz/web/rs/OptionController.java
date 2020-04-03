@@ -19,21 +19,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quiz.coreservice.GameCRUDManager;
+import com.quiz.coreservice.GameCRUDAbstractManager;
+import com.quiz.coreservice.domain.OptionRequest;
+import com.quiz.coreservice.domain.OptionResponse;
 import com.quiz.coreservice.manager.OptionManagerImpl;
+import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.request.OptionWebRequest;
 import com.quiz.response.OptionWebResponse;
-import com.quiz.rs.GameCRUDController;
 
 @RestController("optionController")
 @RequestMapping(path = "/game/option")
 @Validated
-public class OptionController extends GameCRUDAbstractController<OptionWebRequest, OptionWebResponse> implements GameCRUDController<OptionWebRequest, OptionWebResponse>{
+public class OptionController extends GameCRUDAbstractController<OptionWebRequest, OptionWebResponse, OptionRequest, OptionResponse, String, Option>{
 
 	@Autowired
 	public OptionController(
-			@Qualifier("optionManagerImpl")
-			final GameCRUDManager<OptionWebRequest, OptionWebResponse> manager) {
+			final OptionManagerImpl manager) {
 		super(manager);
 	}
 
@@ -49,7 +50,7 @@ public class OptionController extends GameCRUDAbstractController<OptionWebReques
 	@GetMapping(path = "/findById/{id}",
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<OptionWebResponse> findById(@PathParam("id") @Valid @NotBlank final String id) {
+	public ResponseEntity<OptionWebResponse> findById(@PathParam("id") final String id) {
 		return super.findById(id);
 	}
 	
@@ -57,7 +58,7 @@ public class OptionController extends GameCRUDAbstractController<OptionWebReques
 	@DeleteMapping(path = "/deleteById/{id}",
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<Boolean> deleteById(@PathParam("id") @Valid @NotBlank final String id) {
+	public ResponseEntity<Boolean> deleteById(@PathParam("id") final String id) {
 		return super.deleteById(id);
 	}
 	
@@ -65,7 +66,7 @@ public class OptionController extends GameCRUDAbstractController<OptionWebReques
 	@PostMapping(path = "/create",
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<OptionWebResponse> create(@RequestBody @Valid final OptionWebRequest entity) {
+	public ResponseEntity<OptionWebResponse> create(@RequestBody final OptionWebRequest entity) {
 		return super.create(entity);
 	}
 	
@@ -73,7 +74,7 @@ public class OptionController extends GameCRUDAbstractController<OptionWebReques
 	@PutMapping(path = "/update",
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, /** for compatibility with all browsers*/
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public ResponseEntity<OptionWebResponse> update(@RequestBody @Valid final OptionWebRequest entity) {
+	public ResponseEntity<OptionWebResponse> update(@RequestBody final OptionWebRequest entity) {
 		return super.update(entity);
 	}
 	

@@ -1,4 +1,4 @@
-package com.quiz.web;
+package com.quiz;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +10,6 @@ public class QuizServiceApplicationIT {
 
 	@Test
 	public void contextLoads() {
-		
+		//
 	}
 }

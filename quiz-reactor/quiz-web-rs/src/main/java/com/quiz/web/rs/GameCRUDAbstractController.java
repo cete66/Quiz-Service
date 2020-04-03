@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.apache.commons.lang.NullArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,41 +17,35 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.quiz.coreservice.GameCRUDManager;
-import com.quiz.rs.GameCRUDController;
+import com.quiz.coreservice.GameCRUDAbstractManager;
 
-public abstract class GameCRUDAbstractController<I, O> implements GameCRUDController<I, O>{
+public abstract class GameCRUDAbstractController<I, O, SI, SO, ID, T>{
 
-	private final GameCRUDManager<I, O> manager;
+	private final GameCRUDAbstractManager<I, O, SI, SO, ID, T> manager;
 
 	@Autowired
 	public GameCRUDAbstractController(
-			final GameCRUDManager<I, O> manager) {
+			final GameCRUDAbstractManager<I, O, SI, SO, ID, T> manager) {
 		this.manager = manager;
 	}
 	
-	@Override
 	public ResponseEntity<List<O>> findAll() {
 		return ResponseEntity.ok(this.manager.findAll());
 	}
 	
-	@Override
-	public ResponseEntity<O> findById(String id) {
+	public ResponseEntity<O> findById(@Valid @NotBlank ID id) {
 		return ResponseEntity.ok(this.manager.findById(id));
 	}
 	
-	@Override
-	public ResponseEntity<Boolean> deleteById(String id) {
+	public ResponseEntity<Boolean> deleteById(@Valid @NotBlank ID id) {
 		return ResponseEntity.ok(this.manager.deleteById(id));
 	}
 	
-	@Override
-	public ResponseEntity<O> create(I entity) {
+	public ResponseEntity<O> create(@Valid I entity) {
 		return ResponseEntity.ok(this.manager.create(entity));
 	}
 	
-	@Override
-	public ResponseEntity<O> update(I entity) {
+	public ResponseEntity<O> update(@Valid I entity) {
 		return ResponseEntity.ok(this.manager.update(entity));
 	}
 	

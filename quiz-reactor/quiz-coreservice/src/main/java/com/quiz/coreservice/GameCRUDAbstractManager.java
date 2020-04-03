@@ -2,18 +2,20 @@ package com.quiz.coreservice;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.quiz.framework.converter.Converter;
 import com.quiz.framework.converter.ListConverter;
 
-public abstract class GameCRUDAbstractManager<I, O, SI, SO> implements GameCRUDManager<I, O>{
+public abstract class GameCRUDAbstractManager<I, O, SI, SO, ID, T>{
 
-	private final GameCRUDService<SI, SO> service;
+	private final GameCRUDAbstractService<T, SI, SO, ID> service;
 	private final Converter<SO, O> fromCoreConverter;
 	private final Converter<I, SI> toCoreConverter;
 	private final ListConverter<SO, O> fromCoreListConverter;
 
-	
-	public GameCRUDAbstractManager(final GameCRUDService<SI, SO> service, 
+	@Autowired
+	public GameCRUDAbstractManager(final GameCRUDAbstractService<T, SI, SO, ID> service, 
 			final Converter<SO, O> fromCoreConverter,
 			final Converter<I, SI> toCoreConverter){
 		this.service = service;
@@ -22,29 +24,24 @@ public abstract class GameCRUDAbstractManager<I, O, SI, SO> implements GameCRUDM
 		this.toCoreConverter = toCoreConverter;
 	}
 	
-	@Override
 	public List<O> findAll() {
 		return this.fromCoreListConverter.convert(this.service.findAll());
 	}
 	
-	@Override
-	public O findById(String id) {
+	public O findById(ID id) {
 		return this.fromCoreConverter.convert(this.service.findById(id));
 	}
 	
-	@Override
-	public Boolean deleteById(String id) {
+	public Boolean deleteById(ID id) {
 		return this.service.deleteById(id) == 1;
 	}
 	
-	@Override
 	public O create(I entity) {
 		return this.fromCoreConverter.convert(
 				this.service.create(
 						this.toCoreConverter.convert(entity)));
 	}
 	
-	@Override
 	public O update(I entity) {
 		return this.fromCoreConverter.convert(
 				this.service.update(
