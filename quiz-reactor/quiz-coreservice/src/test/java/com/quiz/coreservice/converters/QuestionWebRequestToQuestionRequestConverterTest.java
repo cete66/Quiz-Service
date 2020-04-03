@@ -40,7 +40,7 @@ public class QuestionWebRequestToQuestionRequestConverterTest {
 
 		List<OptionWebRequest> result = new ArrayList<OptionWebRequest>();
 
-		result.add(OptionWebRequest.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+		result.add(OptionWebRequest.builder().withId(ID).withValue(VALUE).build());
 
 		return result;
 	}
@@ -49,7 +49,7 @@ public class QuestionWebRequestToQuestionRequestConverterTest {
 
 		List<OptionRequest> result = new ArrayList<OptionRequest>();
 
-		result.add(OptionRequest.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+		result.add(OptionRequest.builder().withId(ID).withValue(VALUE).build());
 
 		return result;
 	}

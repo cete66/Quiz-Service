@@ -42,5 +42,11 @@ public class QuizManagerImpl extends GameCRUDAbstractManager<QuizWebRequest, Qui
 	public AllQuizWebResponse generate(List<QuizWebResponse> toConvert) {
 		return this.allQuizConverter.convert(toConvert);
 	}
+	
+	@Override
+	public QuizWebResponse create(QuizWebRequest entity) {
+		// TODO Auto-generated method stub
+		return super.create(entity);
+	}
 
 }

@@ -20,8 +20,8 @@ public class QuizRepositoryIT {
 	private static final String Q = "qst1";
 	@Autowired
 	private QuizRepository repository;
-	private final Option opt = Option.builder().withCorrect(true).withValue("asd").build();
-	private final Option opt1 = opt.cloneBuilder().withCorrect(false).build();
+	private final Option opt = Option.builder().withValue("asd").build();
+	private final Option opt1 = opt.cloneBuilder().build();
 	private final Question qst1 = Question.builder().withAnswer(opt).withQuestion(Q).withOptions(Arrays.asList(opt1)).build();
 	
 	

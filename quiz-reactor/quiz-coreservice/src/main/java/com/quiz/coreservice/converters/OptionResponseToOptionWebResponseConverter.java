@@ -16,7 +16,6 @@ implements Converter<OptionResponse, OptionWebResponse> {
 			return null;
 		}
 		return OptionWebResponse.builder()
-				.withCorrect(from.getCorrect())
 				.withId(from.getId())
 				.withValue(from.getValue())
 				.build();

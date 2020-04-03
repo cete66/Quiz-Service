@@ -9,7 +9,6 @@ import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 public class OptionTest extends AbstractModelBeanTest<Option>{
 
 	private final OptionBuilder builder = Option.builder()
-										.withCorrect(true)
 										.withId("1")
 										.withValue("v");
 	
@@ -18,6 +17,6 @@ public class OptionTest extends AbstractModelBeanTest<Option>{
 	public void initEntities() {
 		entityA1 = builder.build();
 		entityA2 = entityA1.cloneBuilder().build();
-		entityB = entityA1.cloneBuilder().withCorrect(false).build();
+		entityB = entityA1.cloneBuilder().withValue("v2").build();
 	}
 }

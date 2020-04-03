@@ -50,7 +50,7 @@ public class QuizRequestToQuizConverterTest {
 
 		List<OptionRequest> result = new ArrayList<OptionRequest>();
 
-		result.add(OptionRequest.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+		result.add(OptionRequest.builder().withId(ID).withValue(VALUE).build());
 
 		return result;
 	}
@@ -59,7 +59,7 @@ public class QuizRequestToQuizConverterTest {
 
 		List<Option> result = new ArrayList<Option>();
 
-		result.add(Option.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+		result.add(Option.builder().withId(ID).withValue(VALUE).build());
 
 		return result;
 	}

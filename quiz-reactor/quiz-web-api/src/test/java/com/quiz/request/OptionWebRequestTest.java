@@ -8,7 +8,6 @@ import com.quiz.request.OptionWebRequest.OptionWebRequestBuilder;
 public class OptionWebRequestTest extends AbstractModelBeanTest<OptionWebRequest> {
 
 	private final OptionWebRequestBuilder optBuilder = OptionWebRequest.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	

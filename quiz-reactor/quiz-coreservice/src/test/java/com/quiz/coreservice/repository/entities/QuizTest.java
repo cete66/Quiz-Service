@@ -15,13 +15,12 @@ import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 public class QuizTest extends AbstractModelBeanTest<Quiz>{
 
 	private final OptionBuilder builder = Option.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	private final QuestionBuilder qBuilder = Question.builder()
 			.withAnswer(builder.build())
 			.withId("1")
-			.withOptions(Arrays.asList(builder.build(), builder.build().cloneBuilder().withCorrect(false).build()))
+			.withOptions(Arrays.asList(builder.build(), builder.build().cloneBuilder().build()))
 			.withQuestion("a");
 	private final QuizBuilder quizBuilder = Quiz.builder()
 			.withId("1")

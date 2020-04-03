@@ -19,8 +19,8 @@ public class QuestionRepositoryIT {
 	private static final String Q = "qst1";
 	@Autowired
 	private QuestionRepository repository;
-	private final Option opt = Option.builder().withCorrect(true).withValue("asd").build();
-	private final Option opt1 = opt.cloneBuilder().withCorrect(false).build();
+	private final Option opt = Option.builder().withValue("asd").build();
+	private final Option opt1 = opt.cloneBuilder().build();
 	
 	@Test
 	public void givenValidDocumentShouldFindAllReturnDocument() {

@@ -12,13 +12,12 @@ import com.quiz.request.QuizWebRequest.QuizWebRequestBuilder;
 public class QuizWebRequestTest extends AbstractModelBeanTest<QuizWebRequest>{
 
 	private final OptionWebRequestBuilder builder = OptionWebRequest.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	private final QuestionWebRequestBuilder qBuilder = QuestionWebRequest.builder()
 			.withAnswer(builder.build())
 			.withId("1")
-			.withOptions(Arrays.asList(builder.build(), builder.withCorrect(false).build()))
+			.withOptions(Arrays.asList(builder.build(), builder.build()))
 			.withQuestion("a");
 	private final QuizWebRequestBuilder quizBuilder = QuizWebRequest.builder()
 			.withId("1")

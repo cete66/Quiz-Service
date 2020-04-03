@@ -9,7 +9,6 @@ import com.quiz.response.OptionWebResponse.OptionWebResponseBuilder;
 public class OptionWebResponseTest extends AbstractModelBeanTest<OptionWebResponse> {
 
 	private final OptionWebResponseBuilder optBuilder = OptionWebResponse.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	

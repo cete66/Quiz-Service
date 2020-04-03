@@ -19,7 +19,7 @@ public class OptionRepositoryIT {
 	
 	@Test
 	public void givenValidDocumentShouldFindAllReturnDocument() {
-		Option expected = Option.builder().withCorrect(true).withValue("findAll").build();
+		Option expected = Option.builder().withValue("findAll").build();
 		expected = this.repository.insert(expected);
 		List<Option> actual = this.repository.findAll();
 		MatcherAssert.assertThat(actual, Matchers.hasItem(Matchers.is(expected)));
@@ -27,7 +27,7 @@ public class OptionRepositoryIT {
 	
 	@Test
 	public void givenValidIdShouldFindByIdReturnDocument() {
-		Option expected = Option.builder().withCorrect(true).withValue("findId").build();
+		Option expected = Option.builder().withValue("findId").build();
 		expected = this.repository.insert(expected);
 		Option actual = this.repository.findById(expected.getId()).get();
 		MatcherAssert.assertThat(actual, Matchers.is(expected));
@@ -35,7 +35,7 @@ public class OptionRepositoryIT {
 	
 	@Test
 	public void givenValidIdShouldDeleteByIdDeleteDocument() {
-		Option data = Option.builder().withCorrect(true).withValue("del").build();
+		Option data = Option.builder().withValue("del").build();
 		data = this.repository.insert(data);
 		this.repository.deleteById(data.getId());
 		Option actual = this.repository.findById(data.getId()).orElse(null);
@@ -44,7 +44,7 @@ public class OptionRepositoryIT {
 	
 	@Test
 	public void givenValidDocumentShouldCreateOk() {
-		Option expected = Option.builder().withCorrect(true).withValue("create").build();
+		Option expected = Option.builder().withValue("create").build();
 		expected = this.repository.insert(expected);
 		Option actual = this.repository.findById(expected.getId()).get();
 		MatcherAssert.assertThat(actual, Matchers.is(expected));
@@ -52,7 +52,7 @@ public class OptionRepositoryIT {
 	
 	@Test
 	public void givenValidDocumentShouldUpdateOk() {
-		Option data = Option.builder().withCorrect(true).withValue("update").build();
+		Option data = Option.builder().withValue("update").build();
 		data = this.repository.save(data);
 		Option expected = data.cloneBuilder().withValue("updated").build();
 		Option actual = this.repository.save(expected);

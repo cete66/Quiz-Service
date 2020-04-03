@@ -31,7 +31,7 @@ public class OptionWebRequestToOptionRequestConverterTest {
 
 	private OptionRequest initExpected() {
 		return OptionRequest.builder()
-				.withCorrect(CORRECT)
+				
 				.withId(ID)
 				.withValue(VALUE)
 				.build();
@@ -39,7 +39,7 @@ public class OptionWebRequestToOptionRequestConverterTest {
 	
 	private OptionWebRequest initToConvert() {
 		return OptionWebRequest.builder()
-				.withCorrect(CORRECT)
+				
 				.withId(ID)
 				.withValue(VALUE)
 				.build();

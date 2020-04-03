@@ -11,12 +11,10 @@ public class OptionWebResponse extends AbstractModelBean {
 
 	private final String id;
 	private final String value;
-	private final Boolean correct;
 
 	private OptionWebResponse(OptionWebResponseBuilder builder) {
 		this.id = builder.id;
 		this.value = builder.value;
-		this.correct = builder.correct;
 	}
 
 	public String getId() {
@@ -26,17 +24,12 @@ public class OptionWebResponse extends AbstractModelBean {
 	public String getValue() {
 		return value;
 	}
-
-	public Boolean getCorrect() {
-		return correct;
-	}
 	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((correct == null) ? 0 : correct.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
@@ -51,11 +44,6 @@ public class OptionWebResponse extends AbstractModelBean {
 		if (getClass() != obj.getClass())
 			return false;
 		OptionWebResponse other = (OptionWebResponse) obj;
-		if (correct == null) {
-			if (other.correct != null)
-				return false;
-		} else if (!correct.equals(other.correct))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -81,7 +69,6 @@ public class OptionWebResponse extends AbstractModelBean {
 	public static final class OptionWebResponseBuilder {
 		private String id;
 		private String value;
-		private Boolean correct;
 
 		private OptionWebResponseBuilder() {
 		}
@@ -90,7 +77,6 @@ public class OptionWebResponse extends AbstractModelBean {
 			super();
 			this.id = request.id;
 			this.value = request.value;
-			this.correct = request.correct;
 		}
 
 		public OptionWebResponseBuilder withId(String id) {
@@ -100,11 +86,6 @@ public class OptionWebResponse extends AbstractModelBean {
 
 		public OptionWebResponseBuilder withValue(String value) {
 			this.value = value;
-			return this;
-		}
-
-		public OptionWebResponseBuilder withCorrect(Boolean correct) {
-			this.correct = correct;
 			return this;
 		}
 

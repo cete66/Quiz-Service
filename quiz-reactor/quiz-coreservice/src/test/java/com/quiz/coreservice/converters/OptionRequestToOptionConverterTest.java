@@ -32,7 +32,6 @@ public class OptionRequestToOptionConverterTest {
 
 	private Option initExpected() {
 		return Option.builder()
-				.withCorrect(CORRECT)
 				.withId(ID)
 				.withValue(VALUE)
 				.build();
@@ -40,7 +39,6 @@ public class OptionRequestToOptionConverterTest {
 	
 	private OptionRequest initToConvert() {
 		return OptionRequest.builder()
-				.withCorrect(CORRECT)
 				.withId(ID)
 				.withValue(VALUE)
 				.build();

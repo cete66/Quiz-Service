@@ -49,7 +49,7 @@ public class QuizResponseToQuizWebResponseConverterTest {
 
 		List<OptionResponse> result = new ArrayList<OptionResponse>();
 
-		result.add(OptionResponse.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+		result.add(OptionResponse.builder().withId(ID).withValue(VALUE).build());
 
 		return result;
 	}
@@ -58,7 +58,7 @@ public class QuizResponseToQuizWebResponseConverterTest {
 
 		List<OptionWebResponse> result = new ArrayList<OptionWebResponse>();
 
-		result.add(OptionWebResponse.builder().withCorrect(CORRECT).withId(ID).withValue(VALUE).build());
+		result.add(OptionWebResponse.builder().withId(ID).withValue(VALUE).build());
 
 		return result;
 	}

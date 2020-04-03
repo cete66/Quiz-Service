@@ -17,13 +17,12 @@ import com.quiz.response.QuizWebResponse.QuizWebResponseBuilder;
 public class AllQuizWebResponseTest extends AbstractModelBeanTest<AllQuizWebResponse>{
 
 	private final OptionWebResponseBuilder builder = OptionWebResponse.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	private final QuestionWebResponseBuilder qBuilder = QuestionWebResponse.builder()
 			.withAnswer(builder.build())
 			.withId("1")
-			.withOptions(Arrays.asList(builder.build(), builder.withCorrect(false).build()))
+			.withOptions(Arrays.asList(builder.build(), builder.build()))
 			.withQuestion("a");
 	private final QuizWebResponseBuilder quizBuilder = QuizWebResponse.builder()
 			.withId("1")

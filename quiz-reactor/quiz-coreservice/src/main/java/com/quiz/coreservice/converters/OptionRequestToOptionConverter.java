@@ -15,7 +15,6 @@ public class OptionRequestToOptionConverter implements Converter<OptionRequest, 
 			return null;
 		}
 		return Option.builder()
-				.withCorrect(from.getCorrect())
 				.withId(from.getId())
 				.withValue(from.getValue())
 				.build();

@@ -1,5 +1,7 @@
 package com.quiz.coreservice.repository.entities;
 
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,7 +13,6 @@ public class Option extends AbstractModelBean {
 	@Id
 	private String id;
 	private String value;
-	private Boolean correct;
 
 	public Option() {
 		
@@ -20,7 +21,6 @@ public class Option extends AbstractModelBean {
 	private Option(OptionBuilder builder) {
 		this.id = builder.id;
 		this.value = builder.value;
-		this.correct = builder.correct;
 	}
 	
 	public String getId() {
@@ -35,21 +35,10 @@ public class Option extends AbstractModelBean {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public Boolean getCorrect() {
-		return correct;
-	}
-	public void setCorrect(Boolean correct) {
-		this.correct = correct;
-	}
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((correct == null) ? 0 : correct.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
-		return result;
+		return Objects.hash(id, value);
 	}
 
 	@Override
@@ -61,24 +50,9 @@ public class Option extends AbstractModelBean {
 		if (getClass() != obj.getClass())
 			return false;
 		Option other = (Option) obj;
-		if (correct == null) {
-			if (other.correct != null)
-				return false;
-		} else if (!correct.equals(other.correct))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
-			return false;
-		return true;
+		return Objects.equals(id, other.id) && Objects.equals(value, other.value);
 	}
-	
+
 	public OptionBuilder cloneBuilder() {
 		return new OptionBuilder(this);
 	}
@@ -90,7 +64,6 @@ public class Option extends AbstractModelBean {
 	public static final class OptionBuilder {
 		private String id;
 		private String value;
-		private Boolean correct;
 
 		private OptionBuilder() {
 		}
@@ -104,16 +77,10 @@ public class Option extends AbstractModelBean {
 			super();
 			this.id = option.id;
 			this.value = option.value;
-			this.correct = option.correct;
 		}
 
 		public OptionBuilder withValue(String value) {
 			this.value = value;
-			return this;
-		}
-
-		public OptionBuilder withCorrect(Boolean correct) {
-			this.correct = correct;
 			return this;
 		}
 

@@ -6,12 +6,10 @@ public class OptionRequest extends AbstractModelBean {
 
 	private final String id;
 	private final String value;
-	private final Boolean correct;
 
 	private OptionRequest(OptionRequestBuilder builder) {
 		this.id = builder.id;
 		this.value = builder.value;
-		this.correct = builder.correct;
 	}
 
 	public String getId() {
@@ -22,15 +20,10 @@ public class OptionRequest extends AbstractModelBean {
 		return value;
 	}
 
-	public Boolean getCorrect() {
-		return correct;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((correct == null) ? 0 : correct.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
@@ -45,11 +38,6 @@ public class OptionRequest extends AbstractModelBean {
 		if (getClass() != obj.getClass())
 			return false;
 		OptionRequest other = (OptionRequest) obj;
-		if (correct == null) {
-			if (other.correct != null)
-				return false;
-		} else if (!correct.equals(other.correct))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -74,7 +62,6 @@ public class OptionRequest extends AbstractModelBean {
 	public static final class OptionRequestBuilder {
 		private String id;
 		private String value;
-		private Boolean correct;
 
 		private OptionRequestBuilder() {
 		}
@@ -84,7 +71,6 @@ public class OptionRequest extends AbstractModelBean {
 			super();
 			this.id = request.id;
 			this.value = request.value;
-			this.correct = request.correct;
 		}
 
 		public OptionRequestBuilder withId(String id) {
@@ -94,11 +80,6 @@ public class OptionRequest extends AbstractModelBean {
 
 		public OptionRequestBuilder withValue(String value) {
 			this.value = value;
-			return this;
-		}
-
-		public OptionRequestBuilder withCorrect(Boolean correct) {
-			this.correct = correct;
 			return this;
 		}
 

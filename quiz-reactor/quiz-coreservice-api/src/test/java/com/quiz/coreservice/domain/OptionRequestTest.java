@@ -8,7 +8,6 @@ import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 public class OptionRequestTest extends AbstractModelBeanTest<OptionRequest>{
 
 	private final OptionRequestBuilder optBuilder = OptionRequest.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	

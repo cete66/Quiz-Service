@@ -13,13 +13,12 @@ public class QuizResponseTest extends AbstractModelBeanTest<QuizResponse>{
 
 	
 	private final OptionResponseBuilder builder = OptionResponse.builder()
-			.withCorrect(true)
 			.withId("1")
 			.withValue("v");
 	private final QuestionResponseBuilder qBuilder = QuestionResponse.builder()
 			.withAnswer(builder.build())
 			.withId("1")
-			.withOptions(Arrays.asList(builder.build(), builder.withCorrect(false).build()))
+			.withOptions(Arrays.asList(builder.build(), builder.build()))
 			.withQuestion("a");
 	private final QuizResponseBuilder quizBuilder = QuizResponse.builder()
 			.withId("1")
