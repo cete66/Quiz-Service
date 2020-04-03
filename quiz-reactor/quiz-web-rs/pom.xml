@@ -40,6 +40,11 @@
 			<artifactId>quiz-coreservice</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- <dependency>
+			<groupId>com.quiz</groupId>
+			<artifactId>quiz-coreservice-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency> -->
 	</dependencies>
 
 	<build>

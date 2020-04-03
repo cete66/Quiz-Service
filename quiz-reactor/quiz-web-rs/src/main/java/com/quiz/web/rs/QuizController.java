@@ -1,4 +1,4 @@
-package com.quiz.rs;
+package com.quiz.web.rs;
 
 import java.util.List;
 
@@ -21,14 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.coreservice.GameCRUDManager;
 import com.quiz.coreservice.QuizManager;
+import com.quiz.request.QuestionWebRequest;
 import com.quiz.request.QuizWebRequest;
 import com.quiz.response.AllQuizWebResponse;
+import com.quiz.response.QuestionWebResponse;
 import com.quiz.response.QuizWebResponse;
+import com.quiz.rs.GameCRUDController;
 
 @RestController("quizController")
 @RequestMapping(path = "/game/quiz")
 @Validated
-public class QuizController extends GameCRUDAbstractController<QuizWebRequest, QuizWebResponse>{
+public class QuizController extends GameCRUDAbstractController<QuizWebRequest, QuizWebResponse> implements GameCRUDController<QuizWebRequest, QuizWebResponse>{
 
 	private final QuizManager quizManager;
 	

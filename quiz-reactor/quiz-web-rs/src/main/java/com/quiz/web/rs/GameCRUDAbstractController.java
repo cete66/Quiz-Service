@@ -1,4 +1,4 @@
-package com.quiz.rs;
+package com.quiz.web.rs;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.NullArgumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.quiz.coreservice.GameCRUDManager;
+import com.quiz.rs.GameCRUDController;
 
 public abstract class GameCRUDAbstractController<I, O> implements GameCRUDController<I, O>{
 
 	private final GameCRUDManager<I, O> manager;
 
+	@Autowired
 	public GameCRUDAbstractController(
 			final GameCRUDManager<I, O> manager) {
 		this.manager = manager;
