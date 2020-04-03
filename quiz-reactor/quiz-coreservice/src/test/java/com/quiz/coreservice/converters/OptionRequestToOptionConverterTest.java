@@ -7,12 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.repository.entities.Option;
-import com.quiz.request.OptionWebRequest;
 
 public class OptionRequestToOptionConverterTest {
 
 	private static final String ID = "1";
-	private static final Boolean CORRECT = true;
+	
 	private static final String VALUE = "v";
 	private final OptionRequest toConvert = initToConvert();
 	private final OptionRequestToOptionConverter converter = 

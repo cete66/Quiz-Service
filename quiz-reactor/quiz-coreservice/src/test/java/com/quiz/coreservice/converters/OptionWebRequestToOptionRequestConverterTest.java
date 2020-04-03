@@ -11,7 +11,7 @@ import com.quiz.request.OptionWebRequest;
 public class OptionWebRequestToOptionRequestConverterTest {
 
 	private static final String ID = "1";
-	private static final Boolean CORRECT = true;
+	
 	private static final String VALUE = "v";
 	private final OptionWebRequest toConvert = initToConvert();
 	private final OptionWebRequestToOptionRequestConverter converter = 

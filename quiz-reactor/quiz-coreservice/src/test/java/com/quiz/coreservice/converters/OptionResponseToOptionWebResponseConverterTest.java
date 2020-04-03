@@ -11,7 +11,7 @@ import com.quiz.response.OptionWebResponse;
 public class OptionResponseToOptionWebResponseConverterTest {
 
 	private static final String ID = "1";
-	private static final Boolean CORRECT = true;
+	
 	private static final String VALUE = "v";
 	private final OptionResponse toConvert = initToConvert();
 	private final OptionResponseToOptionWebResponseConverter converter = 

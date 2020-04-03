@@ -5,15 +5,13 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.quiz.coreservice.domain.OptionRequest;
 import com.quiz.coreservice.domain.OptionResponse;
 import com.quiz.coreservice.repository.entities.Option;
-import com.quiz.request.OptionWebRequest;
 
 public class OptionToOptionResponseConverterTest {
 
 	private static final String ID = "1";
-	private static final Boolean CORRECT = true;
+	
 	private static final String VALUE = "v";
 	private final Option toConvert = initToConvert();
 	private final OptionToOptionResponseConverter converter = 

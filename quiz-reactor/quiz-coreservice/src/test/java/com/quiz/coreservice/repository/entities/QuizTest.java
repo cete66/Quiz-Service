@@ -4,11 +4,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import com.quiz.coreservice.repository.entities.Option;
 import com.quiz.coreservice.repository.entities.Option.OptionBuilder;
-import com.quiz.coreservice.repository.entities.Question;
 import com.quiz.coreservice.repository.entities.Question.QuestionBuilder;
-import com.quiz.coreservice.repository.entities.Quiz;
 import com.quiz.coreservice.repository.entities.Quiz.QuizBuilder;
 import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
 

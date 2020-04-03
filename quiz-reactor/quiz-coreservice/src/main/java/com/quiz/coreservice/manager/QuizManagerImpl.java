@@ -13,7 +13,6 @@ import com.quiz.coreservice.QuizManager;
 import com.quiz.coreservice.domain.QuizRequest;
 import com.quiz.coreservice.domain.QuizResponse;
 import com.quiz.framework.converter.Converter;
-import com.quiz.framework.converter.ListConverter;
 import com.quiz.framework.converter.ListToEntityConverter;
 import com.quiz.request.QuizWebRequest;
 import com.quiz.response.AllQuizWebResponse;

@@ -19,7 +19,7 @@ import com.quiz.coreservice.repository.entities.Quiz;
 public class QuizRequestToQuizConverterTest {
 
 	private static final String ID = "1";
-	private static final Boolean CORRECT = true;
+	
 	private static final String VALUE = "v";
 	private static final String QT1_ID = "qt1";
 	private static final String Q1 = "q1";
