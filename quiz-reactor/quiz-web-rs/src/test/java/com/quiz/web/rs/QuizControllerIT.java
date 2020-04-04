@@ -112,7 +112,6 @@ public class QuizControllerIT {
 		
 		final MockHttpServletResponse response = mockMvc
 				.perform(get(ROOT + ENDPOINT + FIND_ALL)
-						.contentType(MediaType.APPLICATION_JSON_UTF8)
 						.accept(MediaType.APPLICATION_JSON_UTF8))
 				.andReturn().getResponse();
 		
@@ -151,7 +150,6 @@ public class QuizControllerIT {
 				QuizWebResponse.class);
 		MockHttpServletResponse responseDel =  mockMvc
 				.perform(delete(ROOT + ENDPOINT + DELETE, actual.getId())
-						.contentType(MediaType.APPLICATION_JSON_UTF8)
 						.accept(MediaType.APPLICATION_JSON_UTF8))
 				.andReturn().getResponse();
 		Boolean actualDel = objectMapper.readValue(responseDel.getContentAsString(), Boolean.class);
@@ -174,7 +172,6 @@ public class QuizControllerIT {
 				QuizWebResponse.class);
 		MockHttpServletResponse responseDel =  mockMvc
 				.perform(get(ROOT + ENDPOINT + FIND_BY_ID, actual.getId())
-						.contentType(MediaType.APPLICATION_JSON_UTF8)
 						.accept(MediaType.APPLICATION_JSON_UTF8))
 				.andReturn().getResponse();
 		QuizWebResponse actualFind = objectMapper.readValue(responseDel.getContentAsString(), QuizWebResponse.class);

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.TestPropertySource;
 
+import com.quiz.response.AllQuizQuestionWebResponse;
 import com.quiz.response.AllQuizWebResponse;
 import com.quiz.response.OptionWebResponse;
 import com.quiz.response.OptionWebResponse.OptionWebResponseBuilder;
@@ -28,6 +29,8 @@ public class ListQuizWebResponseToAllQuizWebResponseConverterTest {
 
 	@Value("${com.quiz.coreservice.allQuizWebResponse.questionsTag.name}")
 	private String qstTagName;
+	private QuestionWebResponseToAllQuizQuestionWebResponseConverter questionsConverter = 
+			new QuestionWebResponseToAllQuizQuestionWebResponseConverter();
 	
 	private ListQuizWebResponseToAllQuizWebResponseConverter converter;
 	private final OptionWebResponseBuilder builder = OptionWebResponse.builder()
@@ -46,7 +49,7 @@ public class ListQuizWebResponseToAllQuizWebResponseConverterTest {
 	@BeforeEach
 	public void setUp() {
 		this.qstTagName = "q";
-		this.converter = new ListQuizWebResponseToAllQuizWebResponseConverter(qstTagName);
+		this.converter = new ListQuizWebResponseToAllQuizWebResponseConverter(qstTagName, questionsConverter);
 		
 	}
 	
@@ -74,16 +77,16 @@ public class ListQuizWebResponseToAllQuizWebResponseConverterTest {
 		return Arrays.asList(quizBuilder.build(), quizBuilder.build().cloneBuilder().withName("quiz2").build());
 	}
 
-	private Map<String, Map<String, QuestionWebResponse>> 
+	private Map<String, Map<String, AllQuizQuestionWebResponse>> 
 	generateMap(List<QuizWebResponse> list) {
-		Map<String, Map<String, QuestionWebResponse>> quizMap = 
-				new HashMap<String, Map<String,QuestionWebResponse>>();
+		Map<String, Map<String, AllQuizQuestionWebResponse>> quizMap = 
+				new HashMap<String, Map<String,AllQuizQuestionWebResponse>>();
 
 		list.stream().forEach(quiz -> {
-			Map<String,QuestionWebResponse> qst = 
-					new HashMap<String, QuestionWebResponse>();
+			Map<String,AllQuizQuestionWebResponse> qst = 
+					new HashMap<String, AllQuizQuestionWebResponse>();
 			IntStream.range(0, quiz.getQuestions().size()).forEach(index -> {
-				qst.put(qstTagName+(index+1), quiz.getQuestions().get(index));
+				qst.put(qstTagName+(index+1), questionsConverter.convert(quiz.getQuestions().get(index)));
 			});
 			quizMap.put(quiz.getName(), qst);
 		});

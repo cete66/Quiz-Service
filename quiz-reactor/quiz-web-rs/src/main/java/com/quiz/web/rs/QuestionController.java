@@ -44,7 +44,6 @@ public class QuestionController{
 	
 
 	@GetMapping(path = "/findAll",
-				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<List<QuestionWebResponse>> findAll() {
 		return ResponseEntity.ok(manager.findAll());
@@ -52,15 +51,13 @@ public class QuestionController{
 	
 
 	@GetMapping(path = "/findById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<QuestionWebResponse> findById(@PathVariable("id") @NotBlank final String id) {
 		return ResponseEntity.ok(manager.findById(id));
 	}
 	
 
-	@DeleteMapping(path = "/deleteById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
+	@DeleteMapping(path = "/deleteById/{id}", 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<Boolean> deleteById(@PathVariable("id") @NotBlank final String id) {
 		return ResponseEntity.ok(manager.deleteById(id));

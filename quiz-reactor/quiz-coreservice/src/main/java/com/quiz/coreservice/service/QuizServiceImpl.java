@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.quiz.coreservice.GameCRUDAbstractService;
 import com.quiz.coreservice.domain.QuizRequest;

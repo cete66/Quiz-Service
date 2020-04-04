@@ -3,7 +3,6 @@ package com.quiz.coreservice;
 import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Example;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.quiz.framework.converter.Converter;

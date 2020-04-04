@@ -48,24 +48,21 @@ public class QuizController{
 	}
 
 
-	@GetMapping(path = "/findAll",
-				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
+	@GetMapping(path = "/findAll", 
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<List<QuizWebResponse>> findAll() {
 		return ResponseEntity.ok(manager.findAll());
 	}
 	
 
-	@GetMapping(path = "/findById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
+	@GetMapping(path = "/findById/{id}", 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<QuizWebResponse> findById(@PathVariable("id") @Valid @NotBlank final String id) {
 		return ResponseEntity.ok(manager.findById(id));
 	}
 	
 
-	@DeleteMapping(path = "/deleteById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
+	@DeleteMapping(path = "/deleteById/{id}", 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<Boolean> deleteById(@PathVariable("id") @Valid @NotBlank final String id) {
 		return ResponseEntity.ok(manager.deleteById(id));

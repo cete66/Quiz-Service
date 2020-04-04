@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.TestPropertySource;
 
 import com.quiz.coreservice.converters.ListQuizWebResponseToAllQuizWebResponseConverter;
-import com.quiz.coreservice.manager.QuestionManagerImpl;
+import com.quiz.coreservice.converters.QuestionWebResponseToAllQuizQuestionWebResponseConverter;
 import com.quiz.coreservice.manager.QuizManagerImpl;
 import com.quiz.request.OptionWebRequest;
 import com.quiz.request.QuestionWebRequest;
@@ -59,7 +59,8 @@ public class QuizControllerTest {
 															.withName(VALID_QUIZ)
 															.withQuestions(Arrays.asList(qstWebResp))
 															.build();
-	private final ListQuizWebResponseToAllQuizWebResponseConverter converter = new ListQuizWebResponseToAllQuizWebResponseConverter(TAG_NAME);
+	private final QuestionWebResponseToAllQuizQuestionWebResponseConverter questionsConverter = new QuestionWebResponseToAllQuizQuestionWebResponseConverter();
+	private final ListQuizWebResponseToAllQuizWebResponseConverter converter = new ListQuizWebResponseToAllQuizWebResponseConverter(TAG_NAME, questionsConverter);
 	
 	
 	@BeforeEach

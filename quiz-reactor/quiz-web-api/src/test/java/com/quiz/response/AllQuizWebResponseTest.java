@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 
 import com.quiz.framework.domain.test.utils.AbstractModelBeanTest;
+import com.quiz.response.AllQuizQuestionWebResponse.AllQuizQuestionWebResponseBuilder;
 import com.quiz.response.AllQuizWebResponse.AllQuizWebResponseBuilder;
 import com.quiz.response.OptionWebResponse.OptionWebResponseBuilder;
 import com.quiz.response.QuestionWebResponse.QuestionWebResponseBuilder;
@@ -29,6 +30,12 @@ public class AllQuizWebResponseTest extends AbstractModelBeanTest<AllQuizWebResp
 			.withName("quiz1")
 			.withQuestions(Arrays.asList(qBuilder.build(), qBuilder.withQuestion("b").build()));
 	private final AllQuizWebResponseBuilder allQBuilder = AllQuizWebResponse.builder();
+	
+	private final AllQuizQuestionWebResponseBuilder allQuizQuestionBuilder = AllQuizQuestionWebResponse.builder()
+																						.withAnswer(qBuilder.build().getAnswer().getValue())
+																						.withId(qBuilder.build().getId())
+																						.withQuestion(qBuilder.build().getQuestion())
+																						.withOptions(Arrays.asList(builder.build().getValue(), builder.build().getValue()));
 		
 	@Override
 	@BeforeEach
@@ -45,16 +52,16 @@ public class AllQuizWebResponseTest extends AbstractModelBeanTest<AllQuizWebResp
 	 * @param quizList
 	 * @return
 	 */
-	private Map<String, Map<String, QuestionWebResponse>> 
+	private Map<String, Map<String, AllQuizQuestionWebResponse>> 
 	generateFinalMap(final List<QuizWebResponse> quizList) {
 
-		Map<String, Map<String, QuestionWebResponse>> quizMap = 
-				new HashMap<String, Map<String,QuestionWebResponse>>();
+		Map<String, Map<String, AllQuizQuestionWebResponse>> quizMap = 
+				new HashMap<String, Map<String,AllQuizQuestionWebResponse>>();
 
 		quizList.stream().forEach(quiz -> {
-			Map<String,QuestionWebResponse> qst = new HashMap<String, QuestionWebResponse>();
+			Map<String,AllQuizQuestionWebResponse> qst = new HashMap<String, AllQuizQuestionWebResponse>();
 			IntStream.range(0, quiz.getQuestions().size()).forEach(index -> {
-				qst.put("q"+(index+1), quiz.getQuestions().get(index));
+				qst.put("q"+(index+1), allQuizQuestionBuilder.build());
 			});
 			quizMap.put(quiz.getName(), qst);
 		});		

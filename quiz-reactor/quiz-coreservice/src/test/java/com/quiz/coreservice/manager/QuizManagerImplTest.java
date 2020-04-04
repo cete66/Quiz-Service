@@ -12,12 +12,14 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.quiz.coreservice.converters.ListQuizWebResponseToAllQuizWebResponseConverter;
 import com.quiz.coreservice.converters.OptionResponseToOptionWebResponseConverter;
 import com.quiz.coreservice.converters.OptionWebRequestToOptionRequestConverter;
 import com.quiz.coreservice.converters.QuestionResponseToQuestionWebResponseConverter;
 import com.quiz.coreservice.converters.QuestionWebRequestToQuestionRequestConverter;
+import com.quiz.coreservice.converters.QuestionWebResponseToAllQuizQuestionWebResponseConverter;
 import com.quiz.coreservice.converters.QuizResponseToQuizWebResponseConverter;
 import com.quiz.coreservice.converters.QuizWebRequestToQuizRequestConverter;
 import com.quiz.coreservice.domain.OptionRequest;
@@ -32,6 +34,7 @@ import com.quiz.framework.converter.ListToEntityConverter;
 import com.quiz.request.OptionWebRequest;
 import com.quiz.request.QuestionWebRequest;
 import com.quiz.request.QuizWebRequest;
+import com.quiz.response.AllQuizQuestionWebResponse;
 import com.quiz.response.AllQuizWebResponse;
 import com.quiz.response.OptionWebResponse;
 import com.quiz.response.QuestionWebResponse;
@@ -50,7 +53,8 @@ public class QuizManagerImplTest {
 	private Converter<QuestionWebRequest, QuestionRequest> qstToCoreConverter = new QuestionWebRequestToQuestionRequestConverter(optToCoreConverter);
 	private Converter<QuizResponse, QuizWebResponse> qzFromCoreConverter = new QuizResponseToQuizWebResponseConverter(qstFromCoreConverter);
 	private Converter<QuizWebRequest, QuizRequest> qzToCoreConverter = new QuizWebRequestToQuizRequestConverter(qstToCoreConverter);
-	private ListToEntityConverter<QuizWebResponse, AllQuizWebResponse> allQuizConverter = new ListQuizWebResponseToAllQuizWebResponseConverter("q");
+	private final Converter<QuestionWebResponse, AllQuizQuestionWebResponse> questionsConverter = new QuestionWebResponseToAllQuizQuestionWebResponseConverter();
+	private ListToEntityConverter<QuizWebResponse, AllQuizWebResponse> allQuizConverter = new ListQuizWebResponseToAllQuizWebResponseConverter("q", questionsConverter);
 	private QuestionWebRequest qstWebReq = QuestionWebRequest.builder()
 																.withId("1")
 																.withAnswer(optWebReq)

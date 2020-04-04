@@ -43,7 +43,6 @@ public class OptionController {
 	}
 
 	@GetMapping(path = "/findAll",
-				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<List<OptionWebResponse>> findAll() {
 		return ResponseEntity.ok(manager.findAll());
@@ -51,7 +50,6 @@ public class OptionController {
 	
 
 	@GetMapping(path = "/findById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<OptionWebResponse> findById(@PathVariable("id") @NotBlank final String id) {
 		return  ResponseEntity.ok(manager.findById(id));
@@ -59,7 +57,6 @@ public class OptionController {
 	
 
 	@DeleteMapping(path = "/deleteById/{id}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<Boolean> deleteById(@PathVariable("id") @NotBlank final String id) {
 		return  ResponseEntity.ok(manager.deleteById(id));

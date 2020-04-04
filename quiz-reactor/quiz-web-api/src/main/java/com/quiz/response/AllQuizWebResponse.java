@@ -9,7 +9,7 @@ import com.quiz.framework.domain.AbstractModelBean;
 @JsonDeserialize(builder = AllQuizWebResponse.AllQuizWebResponseBuilder.class)
 public class AllQuizWebResponse extends AbstractModelBean{
 
-	private final Map<String, Map<String, QuestionWebResponse>> quiz;
+	private final Map<String, Map<String, AllQuizQuestionWebResponse>> quiz;
 
 
 	private AllQuizWebResponse(AllQuizWebResponseBuilder builder) {
@@ -18,7 +18,7 @@ public class AllQuizWebResponse extends AbstractModelBean{
 
 	
 	
-	public Map<String, Map<String, QuestionWebResponse>> getQuiz() {
+	public Map<String, Map<String, AllQuizQuestionWebResponse>> getQuiz() {
 		return quiz;
 	}
 
@@ -56,7 +56,7 @@ public class AllQuizWebResponse extends AbstractModelBean{
 	}
 
 	public static final class AllQuizWebResponseBuilder {
-		private Map<String, Map<String, QuestionWebResponse>> quiz = Collections.emptyMap();
+		private Map<String, Map<String, AllQuizQuestionWebResponse>> quiz = Collections.emptyMap();
 
 		private AllQuizWebResponseBuilder() {
 		}
@@ -66,7 +66,7 @@ public class AllQuizWebResponse extends AbstractModelBean{
 			this.quiz = allQuiz.quiz;
 		}
 
-		public AllQuizWebResponseBuilder withQuiz(Map<String, Map<String, QuestionWebResponse>> quiz) {
+		public AllQuizWebResponseBuilder withQuiz(Map<String, Map<String, AllQuizQuestionWebResponse>> quiz) {
 			this.quiz = quiz;
 			return this;
 		}
