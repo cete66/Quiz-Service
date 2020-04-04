@@ -1,7 +1,7 @@
 # Quiz-Service
 Microservice to CRUD some Quiz, it's Questions and it's possible (Options) answer(s).
 
-At /Quiz-Service/Actions/ Maven build and a Docker image are executed for every push to master.
+At /Quiz-Service/Actions/ Maven build is executed for every push to master.
 
 Inside the quiz-curl-tests.zip there are .curl files to check the json format complies as specified.
 
